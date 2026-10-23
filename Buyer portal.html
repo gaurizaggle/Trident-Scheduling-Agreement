@@ -28,6 +28,7 @@
   .sidebar::-webkit-scrollbar{width:4px}.sidebar::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
   .brand{padding:0 6px 10px}
   .brand-logo{width:30px;height:30px;border-radius:6px;background:linear-gradient(135deg,#E2412B,#F59A23);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;box-shadow:0 1px 2px rgba(0,0,0,.15)}
+  .brand-img{display:block;width:150px;max-width:100%;height:auto;margin:2px 0 4px}
   .brand-name{font-weight:600;font-size:12px;margin-top:8px}
   .brand-mail{font-size:10px;color:var(--muted)}
   .brand-tools{display:flex;gap:6px;margin-top:10px}
@@ -551,10 +552,10 @@ const AVATAR_COLORS = ['#3E8E95','#5E5E66','#B0285A','#3A2FA8','#2C3A8F','#A3A33
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 const ENTITY_NAMES = [
-  'Hindalco Industries Limited','Test entity','Birla Copper Asoj Pvt Ltd','Dahej Harbour and Infrastructure Limited',
+  'Trident Limited','Test entity','Birla Copper Asoj Pvt Ltd','Dahej Harbour and Infrastructure Limited',
   'Emil Mines And Mineral Resources Limited','Lucknow Finance Company Limited','Minerals and Minerals Limited',
   'Renuka Investments and Finance Limited','Renukeshwar Investments and Finance Limited','Suvas Holdings Limited',
-  'Utkal Alumina International Limited','Hindalco-Almex Aerospace Limited',
+  'Utkal Alumina International Limited','Trident-Almex Aerospace Limited',
 ];
 const entities = ENTITY_NAMES.map((name, i) => ({
   id: 98663 + i, name, color: AVATAR_COLORS[i % AVATAR_COLORS.length], status: 'active',
@@ -582,7 +583,7 @@ const STATES = {
   PUN:{state:'MAHARASHTRA',gst:'27',pin:'411026',city:'Bhosari, Pune',dist:'PUNE MH',lat:'18.63',lng:'73.85'},
 };
 
-const HINDALCO_OFFICES = [
+const TRIDENT_OFFICES = [
   ['RKT_OU_Renukoot Hospital Stores','RKT'],['Mumbai Head Office','MUM'],['RKT_OU_Renukoot Smelter Project','RKT'],
   ['RSG_OU_Renusagar CPP1 RM','RSG'],['ADT_CHM_OU_Aditya Chemical RM stores','ADT'],['ADT_CHM_OU_Aditya Chemicals Stores','ADT'],
   ['ADT_CHM_OU_Aditya Chemicals Projects Stores','ADT'],['ADT_CHM_OU_Aditya Chemicals Miscellaneous Org','ADT'],
@@ -594,8 +595,8 @@ const HINDALCO_OFFICES = [
   ['RKT_OU_Renukoot Carbon Plant','RKT'],['RSG_OU_Renusagar CPP2 RM','RSG'],
   ['Delhi Regional Office','DEL'],['Kolkata Regional Office','KOL'],['Bengaluru Regional Office','BLR'],
 ];
-const HINDALCO_INACTIVE = [['RKT_OU_Renukoot Old Canteen Stores','RKT'],['TPJ_OU_Taloja Scrap Yard','TPJ'],['ALP_OU_Alupuram Legacy Stores','ALP']];
-const HINDALCO_DELETED = [['TEST_OU_Duplicate Office','MUM']];
+const TRIDENT_INACTIVE = [['RKT_OU_Renukoot Old Canteen Stores','RKT'],['TPJ_OU_Taloja Scrap Yard','TPJ'],['ALP_OU_Alupuram Legacy Stores','ALP']];
+const TRIDENT_DELETED = [['TEST_OU_Duplicate Office','MUM']];
 
 const DEPT_TEMPLATES = [
   ['Finance & Accounts','FIN','4110'],['Procurement','PRC','4120'],['Stores & Inventory','STR','4130'],
@@ -636,7 +637,7 @@ function makeOffice(entityId, name, code, status) {
   const orgId = 100 + Math.floor(rand() * 200), invOrg = 1700 + Math.floor(rand() * 200);
   offices.push({
     id, entityId, name, registeredName: name, status, programme: null,
-    address: `${loc} PO ${s.city} ${s.dist} ${s.pin} India hindalco@adityabirla.com`,
+    address: `${loc} PO ${s.city} ${s.dist} ${s.pin} India trident@tridentindia.com`,
     gstin: `${s.gst}AAACH1201R1Z${Math.floor(rand() * 9) + 1}`, state: s.state, pincode: s.pin,
     country: 'India', countryCode: 'IN', lat: s.lat, lng: s.lng, currency: 'INR',
     head: null,
@@ -657,9 +658,9 @@ function makeOffice(entityId, name, code, status) {
     departments: depts,
   });
 }
-HINDALCO_OFFICES.forEach(([n, c]) => makeOffice(98663, n, c, 'active'));
-HINDALCO_INACTIVE.forEach(([n, c]) => makeOffice(98663, n, c, 'inactive'));
-HINDALCO_DELETED.forEach(([n, c]) => makeOffice(98663, n, c, 'deleted'));
+TRIDENT_OFFICES.forEach(([n, c]) => makeOffice(98663, n, c, 'active'));
+TRIDENT_INACTIVE.forEach(([n, c]) => makeOffice(98663, n, c, 'inactive'));
+TRIDENT_DELETED.forEach(([n, c]) => makeOffice(98663, n, c, 'deleted'));
 offices[1].programme = 'P2P Standard';
 offices[1].head = {name:'Aarav Mehta', code:'EMP10231'};
 
@@ -897,9 +898,9 @@ function setNav(group, item) {
 function renderSidebar() {
   document.getElementById('sidebar').innerHTML = `
     <div class="brand">
-      <div class="brand-logo">H</div>
-      <div class="brand-name">Admin - Hindalco</div>
-      <div class="brand-mail">uat.hindalco@dice.tech</div>
+      <img class="brand-img" src="assets/trident-logo.png" alt="Trident Group">
+      <div class="brand-name">Admin - Trident</div>
+      <div class="brand-mail">uat.trident@dice.tech</div>
       <div class="brand-tools">
         <button title="Settings" data-action="noop">${icon('gear', 11)}</button>
         <button title="Search" data-action="noop">${icon('search', 11)}</button>
@@ -1346,7 +1347,7 @@ const PENDING_PO = ['DRAFT','APPROVAL','ACK','GRN','INVOICE'];
 const PO_SECTIONS = [['overview','Overview'],['lines','Line Items'],['schedule','Scheduling Lines'],
   ...(FLOW_MCIRDI ? [['inspection','Inspection Request'],['dispatch','Dispatch Instructions']] : []),
   ['grn','GRN'],['invoice','Invoice'],['inputform','Requester Input Form'],
-  ['bg','Bank Guarantee'],['advances','Advances'],['documents','Documents'],['terms','Terms']];
+  ['bg','Bank Guarantee'],['advances','Advances'],['documents','Documents'],['terms','Terms'],['logs','Logs']];
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const fmtNum = n => Number(n).toLocaleString('en-IN', { maximumFractionDigits: 2 });
@@ -1366,8 +1367,8 @@ const PO_SEED = [
   ['13662355896',4,'-','Default',0,'GRN',[2026,9,3,14,0],'Admin'],
   ['13662311785',5,'-','Default',0,'GRN',[2026,9,3,14,0],'Admin'],
   ['13662310003',6,'-','MRO Goods',1,'GRN',[2026,8,25,14,30],'Admin'],
-  ['PO-HINDALCO-00017',7,'Sales','MRO Goods',2,'GRN',[2026,8,22,13,7],'test employee'],
-  ['PO-HINDALCO-00016',7,'Sales','MRO Goods',2,'GRN',[2026,8,22,12,33],'test employee'],
+  ['PO-TRIDENT-00017',7,'Sales','MRO Goods',2,'GRN',[2026,8,22,13,7],'test employee'],
+  ['PO-TRIDENT-00016',7,'Sales','MRO Goods',2,'GRN',[2026,8,22,12,33],'test employee'],
   ['13582326072',8,'-','MRO Goods',3,'GRN',[2026,8,15,16,20],'Admin','USD'],
   ['TEST5154',9,'-','Default',4,'GRN',[2026,8,10,17,3],'Admin'],
   ['13822313035',9,'-','Default',4,'GRN',[2026,8,10,16,42],'Admin'],
@@ -1473,7 +1474,7 @@ Object.assign(pos[0].lines[1], { qty:4318.59, price:63750, ref:591601 });
   });
   seed = s0;
 })();
-/* every PO delivery office is a Hindalco office in Organisation, so a line's ship-to can be picked as an MC shipping location.
+/* every PO delivery office is a Trident office in Organisation, so a line's ship-to can be picked as an MC shipping location.
    Added after the mock POs are generated so existing sample data and office ids don't shift. */
 const PO_OFFICE_STATE = { RKT:'RKT', DHJ:'GUJ', SIL:'SLV', PUNE:'PUN', ADT:'ADT', HIR:'HIR', MHN:'MHN' };
 PO_OFFICES.forEach(n => { if (!offices.some(o => o.name === n)) makeOffice(98663, n, PO_OFFICE_STATE[n.split('_')[0]] || 'MUM', 'active'); });
@@ -1599,14 +1600,14 @@ function renderPODetail(id) {
         <td><div class="item-details"><b>${l.code}</b><br><br>Item Ref no: ${l.ref}<br>DESC:${esc(l.desc)}<br>HSN : ${l.hsn}<br>SKU :<br>
           ${l.more ? `productCode : ${l.productCode}<br>notes: —<br>Need-by date: ${fmtD(po.endDate)}<br>Requester: ${esc(po.by)}<br>` : `productCode : ${l.productCode}<br>notes:<br>`}
           <button class="link-btn" data-action="po-line-more" data-i="${i}">… show ${l.more ? 'less' : 'more'}</button></div></td>
-        <td><div class="item-details">${esc(po.office)}<br>${icon('open', 9, 2)}<br><br>Registered Address :Renukoot PO: Renukoot SONEBHADRA UP 231217 India 252107 252077 hindalco@adityabirla.com<br>Delivery Date: ${fmtD(po.endDate)}</div></td>
+        <td><div class="item-details">${esc(po.office)}<br>${icon('open', 9, 2)}<br><br>Registered Address :Renukoot PO: Renukoot SONEBHADRA UP 231217 India 252107 252077 trident@tridentindia.com<br>Delivery Date: ${fmtD(po.endDate)}</div></td>
         <td>${fmtNum(l.qty)} ${l.unit}</td><td>${cur} ${fmtNum(l.price)} / ${l.unit}</td>
         <td>${fmtNum(l.delivered)}</td><td>${fmtNum(l.invoiced)}</td><td>${fmtNum(Math.round((l.qty - l.delivered) * 100) / 100)}</td>
         <td>${l.gst}%</td><td>${cur} ${fmtNum(Math.round(amt * 100) / 100)}</td>
         <td><div class="row-actions"><button class="btn btn-primary btn-xs" data-action="po-line-view" data-i="${i}">↓ View</button>
           <button class="kebab" data-action="po-line-menu" data-i="${i}">${icon('dots', 12, 2.4)}</button></div></td>
       </tr>
-      ${FLOW_MCIRDI ? mcRow(po, l, i) : ''}`;
+      ${FLOW_MCIRDI ? mcRow(po, l, i) : slLineRow(po, l, i)}`;
   }).join('');
 
   main(`
@@ -1649,7 +1650,7 @@ function renderPODetail(id) {
               <div class="ln">Email: ${esc(v[4] || 'Not provided')}<br>Mobile: ${v[3]}<br>GSTIN: ${v[1]}<br>Address: ${esc(v[2])}</div></div>
             <div class="po-card"><div class="h">Billing Details <button class="mini-edit" data-action="noop">Edit</button></div>
               <div class="name">${esc(po.office)}</div>
-              <div class="ln">Address: Renukoot PO: Renukoot SONEBHADRA UP 231217 India 252107 252077 hindalco@adityabirla.com<br>City: Pune<br>Country: India<br>GSTIN: 09AAACH1201R1ZL</div></div>
+              <div class="ln">Address: Renukoot PO: Renukoot SONEBHADRA UP 231217 India 252107 252077 trident@tridentindia.com<br>City: Pune<br>Country: India<br>GSTIN: 09AAACH1201R1ZL</div></div>
             <div class="po-card"><div class="h">Owner Details</div>
               <div class="owner"><span>Invoice Owner</span><button class="mini-edit" data-action="po-owner" data-kind="invoiceOwner">Edit</button></div>
               <div class="ln" style="color:var(--primary-600);margin-bottom:12px">${esc(po.invoiceOwner)}</div>
@@ -1662,7 +1663,7 @@ function renderPODetail(id) {
           <div class="po-sec-title">Line Items ${editable ? `<button class="btn btn-primary btn-xs" data-action="po-short-close">Short Closure</button>` : ''}</div>
           <div class="po-sub-title" style="margin-top:0">As Per Purchase Order</div>
           ${editable && FLOW_MCIRDI ? mcSelectBar(po) : ''}
-          ${FLOW_MCIRDI ? linesViewBar(po) : ''}
+          ${FLOW_MCIRDI ? linesViewBar(po) : slViewBar(po)}
           <div class="table-wrap"><table class="po-table">
             <thead><tr>${editable && FLOW_MCIRDI ? '<th class="mc-cell"></th>' : ''}<th style="width:20%">Details</th><th style="width:20%">Delivery Address ▲</th><th>Qty/Unit</th><th>Price/Unit</th><th>Delivered</th>
               <th>Invoice Qty</th><th>Balance Qty</th><th>GST</th><th>Amount</th><th>Action</th></tr></thead>
@@ -1764,11 +1765,9 @@ function renderPODetail(id) {
             ${po.tagsOpen ? `<div style="padding:0 10px 10px"><table class="mini-table"><thead><tr><th>Key</th><th>Value</th></tr></thead>
               <tbody>${po.tags.map(t2 => `<tr><td>${esc(t2.key)}</td><td>${esc(t2.value)}</td></tr>`).join('')}</tbody></table></div>` : ''}
           </div>
-          <div class="po-sub-title" style="font-size:11px;margin-top:22px">Logs</div>
-          ${po.logs.length ? `<div class="po-box"><table class="mini-table po-mini"><thead>${thRow(['Time','Activity','By'])}</thead>
-            <tbody>${po.logs.map(g => `<tr><td>${fmtDT(g.at)}</td><td>${esc(g.text)}</td><td class="right">${esc(g.by)}</td></tr>`).join('')}</tbody></table></div>`
-            : emptyBox('No Logs')}
         </section>
+
+        ${logsSectionHtml(po)}
       </div>
     </div>
 
@@ -1944,7 +1943,7 @@ const PO_ACTIONS = {
     openDrawer('Purchase Order', `
       <div style="border:1px solid var(--border);border-radius:6px;padding:16px;font-size:11px;line-height:1.6">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
-          <div><div class="brand-logo" style="width:26px;height:26px;font-size:11px">H</div><b>Hindalco Industries Limited</b><div class="muted">${esc(po.office)}</div></div>
+          <div><img src="assets/trident-logo.png" alt="Trident Group" style="height:20px;display:block;margin-bottom:4px"><b>Trident Limited</b><div class="muted">${esc(po.office)}</div></div>
           <div style="text-align:right"><b style="font-size:13px">PURCHASE ORDER</b><div>No: ${esc(po.number)}</div><div>Date: ${fmtD(po.created)}</div></div></div>
         <div class="kv" style="grid-template-columns:90px 1fr"><div class="k">Supplier</div><div>${esc(v[0])}<br><span class="muted">${esc(v[2])}</span></div>
           <div class="k">GSTIN</div><div>${v[1]}</div><div class="k">Deliver by</div><div>${fmtD(po.endDate)}</div></div>
@@ -2075,7 +2074,7 @@ const PO_ACTIONS = {
   },
   'po-email': () => {
     const po = currentPO();
-    openModal({ title:'Tag Email', submitLabel:'Add', fields:[{name:'email',label:'Email address',type:'email',required:true,placeholder:'name@adityabirla.com'}],
+    openModal({ title:'Tag Email', submitLabel:'Add', fields:[{name:'email',label:'Email address',type:'email',required:true,placeholder:'name@tridentindia.com'}],
       onSubmit: v => { po.emails.push(v.email.trim()); poLog(po, `Email ${v.email} tagged`); rerenderPO(); } });
   },
   'po-support': () => toast('Support conversations are not part of this prototype'),
@@ -2120,7 +2119,7 @@ if (FLOW_MCIRDI) {
 
 /* Shared with Vendor Portal/Vendor.html through localStorage (same origin, e.g. Live Server),
    so clearances created here show up on the vendor's PO and survive a reload of either page */
-const MC_STORE = 'bajel.mc.v1';
+const MC_STORE = 'trident.mc.v1';
 // everything the Vendor Portal needs to show a PO
 function poMeta(po) {
   const [vName, vGstin, vAddr, vPhone, vEmail] = PO_VENDORS[po.vendor];
@@ -2234,44 +2233,59 @@ addEventListener('storage', e => {
 })();
 
 /* =====================================================================
-   Scheduling Agreement (SAP-style) — delivery schedule lines on each PO line item.
-   In production these arrive pre-approved through integration; here they can also be created / edited / deleted
-   so the flow can be shown live. Shared with the Vendor Portal through localStorage (SA_STORE), which carries the
-   field list too — so changing SL_FIELDS below changes both portals.
-   Rules: lines can only be added once the vendor has acknowledged the PO; the scheduled total of a line item
+   Scheduling Agreement (SAP-style). Every scheduling line is created by adopting a PR against a PO line item.
+   In production these arrive pre-approved through integration (status included, so there is no status logic here);
+   in the prototype they can also be created / edited / deleted so the flow can be shown live.
+   Shared with the Vendor Portal through localStorage (SA_STORE), which carries the labels, column layout and
+   statuses too — so changing the config below changes both portals.
+   Rules: lines can only be added once the vendor has acknowledged the PO; the scheduled quantity of a line item
    can't exceed its PO quantity; no approval step.
-   NOTE: the keys 'date' and 'qty' are used by the calculations — keep them; add / rename / reorder any others freely.
-   Field types: date · qty · office · text · textarea
    ===================================================================== */
-const SA_STORE = 'trident.sa.v1';
-const SL_FIELDS = [
-  { key: 'date',    label: 'Delivery Date',    type: 'date',   required: true },
-  { key: 'qty',     label: 'Scheduled Qty',    type: 'qty',    required: true },
-  { key: 'office',  label: 'Ship-To Location', type: 'office', required: true },
-  { key: 'remarks', label: 'Remarks',          type: 'text' },
+const SA_STORE = 'trident.sa.v2';
+/* PLACEHOLDER statuses — replace with the SAP list. tone: green · amber · red · blue · gray */
+const SL_STATUSES = [
+  { name: 'Open',               tone: 'blue'  },
+  { name: 'Partially Delivered', tone: 'amber' },
+  { name: 'Delivered',          tone: 'green' },
+  { name: 'Closed',             tone: 'gray'  },
+  { name: 'Cancelled',          tone: 'red'   },
 ];
+/* what is entered on the add / edit form (line item and product come from the PO line item itself).
+   Keys 'date', 'qty' and 'open' drive calculations — keep them. Types: text · date · qty · status */
+const SL_FIELDS = [
+  { key: 'pr',     label: 'PR Number',     type: 'text',   required: true, placeholder: 'e.g. PR-591600' },
+  { key: 'date',   label: 'Delivery Date', type: 'date',   required: true },
+  { key: 'qty',    label: 'Quantity',      type: 'qty',    required: true },
+  { key: 'open',   label: 'Open Quantity (not yet delivered)', type: 'qty', placeholder: 'defaults to the quantity' },
+  { key: 'status', label: 'Status',        type: 'status', required: true },
+];
+const SL_LABELS = { id: 'SA Line ID', li: 'Line Item No.', product: 'Product Name', pr: 'PR Number', date: 'Delivery Date', qty: 'Quantity', open: 'Open Qty', status: 'Status' };
+const SL_COLS_LINE = ['id', 'pr', 'date', 'qty', 'open', 'status'];                          // dropdown under each line item
+const SL_COLS_SECTION = ['id', 'li', 'product', 'date', 'qty', 'open', 'status'];      // Scheduling Lines section (grouped by PR)
+
 const saOpen = po => ['GRN', 'INVOICE'].includes(po.status);   // past vendor acknowledgement, not closed / cancelled
 const slLock = po => saOpen(po) ? '' : po.status === 'ACK' ? 'Scheduling lines can be added once the vendor acknowledges this PO on the Vendor Portal.'
   : ['CLOSED', 'CANCELLED'].includes(po.status) ? `This PO is ${po.status.toLowerCase()}; scheduling lines can no longer be changed.`
   : 'Scheduling lines can be added once the PO has been sent to, and acknowledged by, the vendor.';
 const slScheduled = l => r2((l.sls || []).reduce((a, s) => a + s.qty, 0));
 const slOpenQty = l => r2(l.qty - slScheduled(l));
-const slSorted = l => (l.sls || []).map((s, k) => ({ s, k })).sort((a, b) => a.s.date.localeCompare(b.s.date) || a.s.no.localeCompare(b.s.no));
-const nextSlNo = l => String(Math.max(0, ...(l.sls || []).map(s => +s.no)) + 1).padStart(4, '0');
+const liNo = i => String((i + 1) * 10);                         // SAP-style line item number: 10, 20, 30…
+const slDate = v => fmtD(new Date(v + 'T00:00:00'));
+const slTone = n => SL_STATUSES.find(x => x.name === n)?.tone || 'gray';
+const slChip = n => `<span class="chip ${slTone(n)}">${esc(n)}</span>`;
+const slSorted = l => (l.sls || []).map((s, k) => ({ s, k })).sort((a, b) => a.s.date.localeCompare(b.s.date) || a.s.id.localeCompare(b.s.id));
+const nextSlId = po => `SL-${po.number.slice(-4)}-${String(Math.max(0, ...po.lines.flatMap(l => l.sls.map(s => +s.id.split('-').pop()))) + 1).padStart(3, '0')}`;
+const saLog = (po, text, by = 'Admin', at = new Date()) => po.logs.unshift({ at, text, by, sa: true });
+
 function saveSAs() {
-  const data = {};
+  const data = {}, logs = {};
   pos.forEach(po => {
     if (!(po.sentToVendor || po.lines.some(l => l.sls.length))) return;
     data[po.number] = {};
-    po.lines.forEach(l => {
-      data[po.number][l.ref] = l.sls.map(s => {
-        const x = { ...s };
-        SL_FIELDS.filter(f => f.type === 'office').forEach(f => { x[f.key + 'Name'] = officeName(s[f.key]); x[f.key + 'Addr'] = officeById(s[f.key])?.address || ''; });
-        return x;
-      });
-    });
+    logs[po.number] = po.logs.filter(g => g.sa).map(g => ({ ...g, at: g.at.toISOString() }));
+    po.lines.forEach((l, i) => { data[po.number][l.ref] = l.sls.map(s => ({ ...s, li: liNo(i), product: l.desc, code: l.code, tone: slTone(s.status) })); });
   });
-  try { localStorage.setItem(SA_STORE, JSON.stringify({ savedAt: new Date().toISOString(), fields: SL_FIELDS, pos: data })); } catch (e) {}
+  try { localStorage.setItem(SA_STORE, JSON.stringify({ savedAt: new Date().toISOString(), labels: SL_LABELS, cols: { line: SL_COLS_LINE, section: SL_COLS_SECTION }, pos: data, logs })); } catch (e) {}
 }
 // any change to a PO's schedule: make sure the vendor can see the PO, then publish
 function syncSAs(po) { po.sentToVendor = true; savePOs(); saveSAs(); }
@@ -2281,104 +2295,176 @@ function syncSAs(po) { po.sentToVendor = true; savePOs(); saveSAs(); }
   const seedLines = (number, byLine) => {
     const po = pos.find(p => p.number === number);
     if (!po) return;
-    Object.entries(byLine).forEach(([li, rows]) => rows.forEach(([date, qty, office, remarks], n) => {
-      const at = po.created.toISOString();
-      po.lines[+li].sls.push({ no: String(n + 1).padStart(4, '0'), date, qty, office: offices.find(o => o.name === office)?.id,
-        remarks, rev: 1, createdAt: at, by: 'Integration', updatedAt: at, updatedBy: 'Integration' });
+    Object.entries(byLine).forEach(([li, rows]) => rows.forEach(([pr, date, qty, open, status]) => {
+      const l = po.lines[+li], at = po.created, id = nextSlId(po);
+      const s = { id, pr, date, qty, open, status: SL_STATUSES[0].name, rev: 1, createdAt: at.toISOString(), by: 'Integration', updatedAt: at.toISOString(), updatedBy: 'Integration' };
+      l.sls.push(s);
+      saLog(po, `Scheduling line ${id} created via integration · ${pr} · ${l.code} · ${fmtNum(qty)} ${l.unit} · delivery ${slDate(date)} · status ${s.status}`, 'Integration', at);
+      if (status !== s.status) {
+        const t = addDays(at, 9);
+        saLog(po, `Scheduling line ${id} status changed: ${s.status} → ${status}`, 'Integration', t);
+        Object.assign(s, { status, updatedAt: t.toISOString() });
+      }
     }));
   };
+  // [PR number, delivery date, quantity, open quantity, status]
   seedLines('4600001001', {
-    0: [['2026-11-05', 40, 'RKT_OU_Renukoot RM', 'First lot'], ['2026-11-26', 40, 'RKT_OU_Renukoot Stores', ''], ['2026-12-15', 20, 'RKT_OU_Renukoot RM', 'Year-end lot']],
-    1: [['2026-11-12', 8, 'RKT_OU_Renukoot Stores', ''], ['2026-12-10', 8, 'RKT_OU_Renukoot Stores', '']] });
+    0: [['PR-591600', '2026-10-20', 30, 0, 'Delivered'], ['PR-591600', '2026-11-05', 30, 30, 'Open'], ['PR-591600', '2026-11-26', 30, 30, 'Open'], ['PR-591655', '2026-12-15', 20, 20, 'Open']],
+    1: [['PR-591655', '2026-11-12', 8, 8, 'Open'], ['PR-591655', '2026-12-10', 8, 8, 'Open']] });
   seedLines('4600001003', {
-    0: [['2026-11-02', 800, 'ADT_OU_Aditya Smelter Stores', ''], ['2026-11-30', 800, 'HIR_OU_Hirakud Smelter Stores', ''], ['2026-12-28', 800, 'MHN_OU_Mahan Aluminium Smelter', '']],
-    1: [['2026-11-10', 1000, 'RKT_OU_Renukoot RM', 'Rail rake'], ['2026-12-10', 1000, 'RKT_OU_Renukoot RM', 'Rail rake']] });
+    0: [['PR-591700', '2026-10-18', 800, 0, 'Delivered'], ['PR-591700', '2026-11-30', 800, 800, 'Open'], ['PR-591701', '2026-12-28', 800, 800, 'Open']],
+    1: [['PR-591702', '2026-10-22', 1000, 400, 'Partially Delivered'], ['PR-591702', '2026-11-10', 1000, 1000, 'Open']] });
   let saved = null;
   try { saved = JSON.parse(localStorage.getItem(SA_STORE)); } catch (e) {}
   if (saved?.pos) pos.forEach(po => {
     const by = saved.pos[po.number];
-    if (by) po.lines.forEach(l => { l.sls = (by[l.ref] || []).filter(s => officeById(s.office)); });
+    if (by) po.lines.forEach(l => { l.sls = (by[l.ref] || []).map(({ li, product, code, tone, ...s }) => s); });
+    const lg = saved.logs?.[po.number];
+    if (lg) po.logs = [...po.logs.filter(g => !g.sa), ...lg.map(g => ({ ...g, at: new Date(g.at) }))];
   });
   savePOs(); saveSAs();   // publish the sample POs (and their schedule) to the Vendor Portal
 })();
 
-function slCell(f, s, l) {
-  if (f.type === 'date') return fmtD(isoToDate(s[f.key]));
-  if (f.type === 'qty') return `<b>${fmtNum(s[f.key])}</b> ${esc(l.unit)}`;
-  if (f.type === 'office') return esc(officeName(s[f.key]));
-  return s[f.key] ? esc(s[f.key]) : '<span class="faint">—</span>';
+function slCell(key, { s, l, i }) {
+  switch (key) {
+    case 'id': return `<b>${esc(s.id)}</b>`;
+    case 'li': return liNo(i);
+    case 'product': return `<div style="max-width:300px;white-space:normal">${esc(l.desc.length > 80 ? l.desc.slice(0, 80) + '…' : l.desc)}</div><div class="faint">${esc(l.code)}</div>`;
+    case 'pr': return `<b>${esc(s.pr)}</b>`;
+    case 'date': return slDate(s.date);
+    case 'qty': return `<b>${fmtNum(s.qty)}</b> ${esc(l.unit)}`;
+    case 'open': return `${fmtNum(s.open)} ${esc(l.unit)}`;
+    case 'status': return slChip(s.status);
+  }
+  return '';
 }
+const slActions = (i, k) => `<td class="right"><span class="ir-actions"><button class="btn btn-outline btn-xs" data-action="sl-edit" data-i="${i}" data-k="${k}">${icon('edit', 9, 2)} Edit</button>
+  <button class="btn btn-danger-soft btn-xs" data-action="sl-del" data-i="${i}" data-k="${k}">${icon('trash', 9, 2)} Delete</button></span></td>`;
+
+/* PO-level bar above the line items: open / close the scheduling dropdown of every line */
+function slViewBar(po) {
+  return `<div class="lines-subbar" role="group" aria-label="Scheduling lines for all line items"><span>Scheduling lines for all line items:</span>
+    <button class="sub-tab ${po.lines.every(l => l.slOpen) ? 'on' : ''}" data-action="sl-all" data-v="1">${icon('chevDown', 10, 2)} Expand all</button>
+    <button class="sub-tab" data-action="sl-all" data-v="0">${icon('chevUp', 10, 2)} Collapse all</button></div>`;
+}
+/* dropdown under each line item: that product's scheduling lines (PR · delivery date · qty · open qty · status) */
+function slLineRow(po, l, i) {
+  const lock = slLock(po), open = !lock, sched = slScheduled(l), left = slOpenQty(l), pct = Math.min(100, l.qty ? sched / l.qty * 100 : 0);
+  const rows = slSorted(l), isOpen = !!l.slOpen;
+  return `<tr class="lp-row"><td colspan="10">
+    <div class="lp" aria-label="Scheduling lines for line ${i + 1} · ${l.code}">
+      <div class="lp-head" data-action="sl-toggle" data-i="${i}" style="cursor:pointer" title="${isOpen ? 'Hide' : 'Show'} scheduling lines">
+        <span class="lp-title"><span class="ln">Line ${i + 1}</span><span class="cd">${l.code}</span> · Scheduling Lines <span class="chip gray">${rows.length}</span></span>
+        <span class="mc-meter" title="${fmtNum(sched)} of ${fmtNum(l.qty)} ${l.unit} scheduled"><span style="width:${pct}%"></span></span>
+        <span class="mc-meter-txt">${fmtNum(sched)} / ${fmtNum(l.qty)} ${l.unit} scheduled · <b class="${left > 0 ? '' : 'ok'}">${fmtNum(left)} unscheduled</b></span>
+        <button class="btn btn-primary btn-xs" data-action="sl-add" data-i="${i}" ${open && left > 0 ? '' : 'disabled'}
+          title="${esc(!open ? lock : left > 0 ? '' : 'Line quantity is fully scheduled')}">${icon('plus', 9, 2.6)} Add Scheduling Line</button>
+        <span style="display:grid;place-items:center">${icon(isOpen ? 'chevUp' : 'chevDown', 13, 2.2)}</span>
+      </div>
+      ${isOpen ? `<div class="lp-body">${rows.length ? `<table class="mini-table mc-table"><thead><tr>${SL_COLS_LINE.map(c => `<th>${SL_LABELS[c]}</th>`).join('')}${open ? '<th class="right">Action</th>' : ''}</tr></thead>
+        <tbody>${rows.map(({ s, k }) => `<tr>${SL_COLS_LINE.map(c => `<td>${slCell(c, { s, l, i })}</td>`).join('')}${open ? slActions(i, k) : ''}</tr>`).join('')}</tbody></table>`
+        : '<div class="lp-empty">No scheduling lines for this line item yet.</div>'}</div>` : ''}
+    </div>
+  </td></tr>`;
+}
+/* the Scheduling Lines section: every line of the PO, grouped PR-wise */
 function saSectionHtml(po) {
   const lock = slLock(po), open = !lock;
-  const total = po.lines.reduce((a, l) => a + l.sls.length, 0);
+  const all = po.lines.flatMap((l, i) => l.sls.map((s, k) => ({ s, l, i, k })));
+  const groups = new Map();
+  all.forEach(x => { if (!groups.has(x.s.pr)) groups.set(x.s.pr, []); groups.get(x.s.pr).push(x); });
+  const prs = [...groups.keys()].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  const canAdd = open && po.lines.some(l => slOpenQty(l) > 0);
   return `<section data-spy="schedule">
-    <div class="po-sec-title">Scheduling Lines ${total ? `<span class="chip gray">${total}</span>` : ''}</div>
+    <div class="po-sec-title">Scheduling Lines ${all.length ? `<span class="chip gray">${all.length}</span><span class="chip gray">${prs.length} PR${prs.length === 1 ? '' : 's'}</span>` : ''}
+      <span style="margin-left:auto"><button class="btn btn-primary btn-xs" data-action="sl-add" ${canAdd ? '' : 'disabled'}
+        title="${esc(!open ? lock : canAdd ? '' : 'All line items are fully scheduled')}">${icon('plus', 9, 2.6)} Add Scheduling Line</button></span></div>
     ${lock ? `<div class="mc-bar" style="color:var(--muted);font-size:11px">${icon('lock', 12, 2)} ${lock}</div>` : ''}
-    ${po.lines.map((l, i) => {
-      const sched = slScheduled(l), left = slOpenQty(l), pct = Math.min(100, l.qty ? sched / l.qty * 100 : 0), rows = slSorted(l);
-      return `<div class="lp" style="margin-bottom:14px;border-radius:6px" aria-label="Scheduling lines for line ${i + 1} · ${l.code}">
-        <div class="lp-head">
-          <span class="lp-title"><span class="ln">Line ${i + 1}</span><span class="cd">${l.code}</span></span>
-          <span class="small muted">${esc(l.desc.length > 70 ? l.desc.slice(0, 70) + '…' : l.desc)}</span>
-          <span class="mc-meter" title="${fmtNum(sched)} of ${fmtNum(l.qty)} ${l.unit} scheduled"><span style="width:${pct}%"></span></span>
-          <span class="mc-meter-txt">${fmtNum(sched)} / ${fmtNum(l.qty)} ${l.unit} scheduled · <b class="${left > 0 ? '' : 'ok'}">${fmtNum(left)} unscheduled</b></span>
-          <button class="btn btn-primary btn-xs" data-action="sl-add" data-i="${i}" ${open && left > 0 ? '' : 'disabled'}
-            title="${esc(!open ? lock : left > 0 ? '' : 'Line quantity is fully scheduled')}">${icon('plus', 9, 2.6)} Add Scheduling Line</button>
-        </div>
-        <div class="lp-body">${rows.length ? `<table class="mini-table mc-table"><thead><tr><th>Sched. Line</th>${SL_FIELDS.map(f => `<th>${esc(f.label)}</th>`).join('')}<th>Last Updated</th>${open ? '<th class="right">Action</th>' : ''}</tr></thead>
-          <tbody>${rows.map(({ s, k }) => `<tr><td><b>${s.no}</b></td>${SL_FIELDS.map(f => `<td>${slCell(f, s, l)}</td>`).join('')}
-            <td>${s.rev > 1 ? `<span class="chip amber">Rev ${s.rev}</span> ` : ''}<span class="faint">${fmtDT(new Date(s.updatedAt))} · ${esc(s.updatedBy)}</span></td>
-            ${open ? `<td class="right"><span class="ir-actions"><button class="btn btn-outline btn-xs" data-action="sl-edit" data-i="${i}" data-k="${k}">${icon('edit', 9, 2)} Edit</button>
-              <button class="btn btn-danger-soft btn-xs" data-action="sl-del" data-i="${i}" data-k="${k}">${icon('trash', 9, 2)} Delete</button></span></td>` : ''}</tr>`).join('')}</tbody></table>`
-          : '<div class="lp-empty">No scheduling lines for this line item yet.</div>'}</div>
-      </div>`;
-    }).join('')}
+    ${prs.length ? prs.map(pr => {
+      const rows = groups.get(pr).sort((a, b) => a.s.date.localeCompare(b.s.date) || a.i - b.i || a.s.id.localeCompare(b.s.id));
+      const prods = new Set(rows.map(x => x.i)).size;
+      return `<div class="irg-line"><div class="irg-line-h"><span class="code">${esc(pr)}</span>
+          <span>${rows.length} scheduling line${rows.length === 1 ? '' : 's'}</span><span>${prods} product${prods === 1 ? '' : 's'}</span></div>
+        <div class="table-wrap"><table class="mini-table"><thead><tr>${SL_COLS_SECTION.map(c => `<th>${SL_LABELS[c]}</th>`).join('')}${open ? '<th class="right">Action</th>' : ''}</tr></thead>
+          <tbody>${rows.map(x => `<tr>${SL_COLS_SECTION.map(c => `<td>${slCell(c, x)}</td>`).join('')}${open ? slActions(x.i, x.k) : ''}</tr>`).join('')}</tbody></table></div></div>`;
+    }).join('') : emptyBox('No scheduling lines yet')}
   </section>`;
 }
-/* add (k undefined) or edit one schedule line */
+/* Logs / Activity section (end of the page): PO activity, including every scheduling line created / changed / deleted */
+function logsSectionHtml(po) {
+  const logs = [...po.logs].sort((a, b) => b.at - a.at);
+  return `<section data-spy="logs">
+    <div class="po-sec-title">Logs / Activity ${logs.length ? `<span class="chip gray">${logs.length}</span>` : ''}</div>
+    ${logs.length ? `<div class="po-box"><table class="mini-table po-mini"><thead>${thRow(['Time', 'Activity', 'By'])}</thead>
+      <tbody>${logs.map(g => `<tr><td style="white-space:nowrap">${fmtDT(g.at)}</td><td>${g.sa ? '<span class="chip blue">Scheduling</span> ' : ''}${esc(g.text)}</td><td class="right">${esc(g.by)}</td></tr>`).join('')}</tbody></table></div>`
+      : emptyBox('No Logs')}
+  </section>`;
+}
+
+/* add (k undefined) or edit one scheduling line. With no line item given (i == null) the form asks which line item. */
 function openSlModal(po, i, k) {
   closeMenu();
-  const l = po.lines[i], cur = k == null ? null : l.sls[k];
   const lock = slLock(po);
   if (lock) return toast(lock);
-  const avail = r2(slOpenQty(l) + (cur ? cur.qty : 0));
-  if (avail <= 0) return toast('This line item is fully scheduled');
-  const shipTo = offices.find(o => o.name === po.office && o.status === 'active')?.id;
-  const offOpts = offices.filter(o => o.status === 'active').sort((a, b) => a.name.localeCompare(b.name)).map(o => [o.id, o.name]);
-  const fields = SL_FIELDS.map(f => ({ name: f.key, label: f.label, required: f.required,
-    type: { qty: 'number', office: 'select', date: 'date', textarea: 'textarea' }[f.type] || 'text',
-    ...(f.type === 'qty' ? { step: 'any' } : {}), ...(f.type === 'office' ? { options: offOpts, placeholder: 'Select location' } : {}),
-    value: cur ? cur[f.key] : f.type === 'qty' ? avail : f.type === 'office' ? shipTo : '' }));
-  openModal({ title: cur ? `Edit Scheduling Line ${cur.no}` : 'Add Scheduling Line', submitLabel: cur ? 'Save Changes' : 'Add Scheduling Line', fields,
-    body: `<p style="margin-bottom:14px">PO <b style="color:var(--text)">${esc(po.number)}</b> · <b style="color:var(--text)">${l.code}</b> · PO qty ${fmtNum(l.qty)} ${l.unit}
-      · available to schedule <b style="color:var(--text)">${fmtNum(avail)} ${l.unit}</b></p>`,
+  const cur = k == null ? null : po.lines[i].sls[k], fixed = i == null ? null : po.lines[i];
+  const lineOpts = po.lines.map((l, n) => [n, `${liNo(n)} · ${l.code} · ${fmtNum(slOpenQty(l))} ${l.unit} unscheduled`]).filter(([n]) => slOpenQty(po.lines[n]) > 0);
+  if (!cur && (fixed ? slOpenQty(fixed) <= 0 : !lineOpts.length)) return toast(fixed ? 'This line item is fully scheduled' : 'All line items are fully scheduled');
+  const avail0 = fixed ? r2(slOpenQty(fixed) + (cur ? cur.qty : 0)) : '';
+  const fields = [
+    ...(fixed ? [] : [{ name: 'line', label: 'Line Item', type: 'select', required: true, options: lineOpts, placeholder: 'Select line item' }]),
+    ...SL_FIELDS.map(f => ({ name: f.key, label: f.label, required: f.required, placeholder: f.placeholder,
+      type: { qty: 'number', date: 'date', status: 'select' }[f.type] || 'text',
+      ...(f.type === 'qty' ? { step: 'any' } : {}), ...(f.type === 'status' ? { options: SL_STATUSES.map(x => x.name) } : {}),
+      value: cur ? cur[f.key] : f.key === 'qty' || f.key === 'open' ? avail0 : f.key === 'status' ? SL_STATUSES[0].name : '' })),
+  ];
+  openModal({ title: cur ? `Edit Scheduling Line ${cur.id}` : 'Add Scheduling Line', submitLabel: cur ? 'Save Changes' : 'Add Scheduling Line', fields,
+    body: `<p style="margin-bottom:14px">PO <b style="color:var(--text)">${esc(po.number)}</b>${fixed ? ` · line item <b style="color:var(--text)">${liNo(i)}</b> · <b style="color:var(--text)">${fixed.code}</b>
+      <br>${esc(fixed.desc)}<br>PO qty ${fmtNum(fixed.qty)} ${fixed.unit} · available to schedule <b style="color:var(--text)">${fmtNum(avail0)} ${fixed.unit}</b>`
+      : '. A scheduling line is created by adopting a PR against one of the PO line items.'}</p>`,
     onSubmit: v => {
-      const rec = {};
-      SL_FIELDS.forEach(f => { const x = v[f.key]; rec[f.key] = f.type === 'qty' ? r2(+x) : f.type === 'office' ? +x : String(x ?? '').trim(); });
+      const li = fixed ? i : +v.line, l = po.lines[li];
+      const avail = r2(slOpenQty(l) + (cur ? cur.qty : 0));
+      const rec = { pr: v.pr.trim(), date: v.date, qty: r2(+v.qty), open: v.open === '' ? r2(+v.qty) : r2(+v.open), status: v.status };
       if (!(rec.qty > 0)) { toast('Enter a quantity greater than 0'); return false; }
-      if (rec.qty > avail) { toast(`Only ${fmtNum(avail)} ${l.unit} left to schedule on this line`); return false; }
-      const now = new Date().toISOString(), no = cur ? cur.no : nextSlNo(l);
-      if (cur) Object.assign(cur, rec, { rev: (cur.rev || 1) + 1, updatedAt: now, updatedBy: 'Admin' });
-      else l.sls.push({ no, ...rec, rev: 1, createdAt: now, by: 'Admin', updatedAt: now, updatedBy: 'Admin' });
-      const what = `${l.code} · line ${no}: ${fmtNum(rec.qty)} ${l.unit} on ${fmtD(isoToDate(rec.date))}`;
-      po.timeline.push({ title: cur ? 'Scheduling Line Revised' : 'Scheduling Line Added', by: what, at: new Date() });
-      poLog(po, `Scheduling line ${cur ? 'revised' : 'added'} · ${what}`);
-      syncSAs(po); rerenderPO(); toast(cur ? `Scheduling line ${no} updated · vendor notified` : `Scheduling line ${no} added · visible to the vendor`);
+      if (rec.qty > avail) { toast(`Only ${fmtNum(avail)} ${l.unit} left to schedule on this line item`); return false; }
+      if (!(rec.open >= 0) || rec.open > rec.qty) { toast('Open quantity must be between 0 and the quantity'); return false; }
+      const now = new Date().toISOString(), what = `${l.code} · ${fmtNum(rec.qty)} ${l.unit} · delivery ${slDate(rec.date)}`;
+      if (cur) {
+        const old = { ...cur }, fv = (key, x) => key === 'date' ? slDate(x) : key === 'qty' || key === 'open' ? fmtNum(x) : x;
+        const changes = SL_FIELDS.filter(f => String(old[f.key]) !== String(rec[f.key]));
+        if (!changes.length) { toast('No changes to save'); return; }
+        Object.assign(cur, rec, { rev: (cur.rev || 1) + 1, updatedAt: now, updatedBy: 'Admin' });
+        if (changes.some(f => f.key === 'status')) saLog(po, `Scheduling line ${cur.id} status changed: ${old.status} → ${rec.status}`);
+        const rest = changes.filter(f => f.key !== 'status');
+        if (rest.length) saLog(po, `Scheduling line ${cur.id} updated · ${rest.map(f => `${f.label.replace(/ \(.*/, '')} ${fv(f.key, old[f.key])} → ${fv(f.key, rec[f.key])}`).join('; ')}`);
+        po.timeline.push({ title: 'Scheduling Line Revised', by: `${cur.id}: ${what}`, at: new Date() });
+        toast(`Scheduling line ${cur.id} updated · vendor notified`);
+      } else {
+        const id = nextSlId(po);
+        l.sls.push({ id, ...rec, rev: 1, createdAt: now, by: 'Admin', updatedAt: now, updatedBy: 'Admin' });
+        l.slOpen = true;
+        saLog(po, `Scheduling line ${id} created · ${rec.pr} · ${what} · status ${rec.status}`);
+        po.timeline.push({ title: 'Scheduling Line Added', by: `${id}: ${what}`, at: new Date() });
+        toast(`Scheduling line ${id} created · visible to the vendor`);
+      }
+      syncSAs(po); rerenderPO();
     } });
 }
 const SA_ACTIONS = {
-  'sl-add': el => openSlModal(currentPO(), +el.dataset.i),
+  'sl-add': el => openSlModal(currentPO(), el.dataset.i == null ? null : +el.dataset.i),
   'sl-edit': el => openSlModal(currentPO(), +el.dataset.i, +el.dataset.k),
+  'sl-toggle': el => { const l = currentPO().lines[+el.dataset.i]; l.slOpen = !l.slOpen; rerenderPO(); },
+  'sl-all': el => { currentPO().lines.forEach(l => { l.slOpen = el.dataset.v === '1'; }); rerenderPO(); },
   'sl-del': el => {
     const po = currentPO(), l = po.lines[+el.dataset.i], s = l.sls[+el.dataset.k];
     if (slLock(po)) return toast(slLock(po));
     confirmBox({ title: 'Delete scheduling line', danger: true, confirmLabel: 'Delete',
-      message: `Delete scheduling line <b>${s.no}</b> of <b>${l.code}</b> (${fmtNum(s.qty)} ${l.unit} on ${fmtD(isoToDate(s.date))})? Its quantity goes back to the unscheduled balance and the vendor no longer sees it.`,
+      message: `Delete scheduling line <b>${s.id}</b> (${esc(s.pr)} · ${l.code} · ${fmtNum(s.qty)} ${l.unit} on ${slDate(s.date)})? Its quantity goes back to the unscheduled balance and the vendor no longer sees it.`,
       onConfirm: () => {
         l.sls.splice(+el.dataset.k, 1);
-        po.timeline.push({ title: 'Scheduling Line Deleted', by: `${l.code} · line ${s.no}`, at: new Date() });
-        poLog(po, `Scheduling line deleted · ${l.code} · line ${s.no}`);
-        syncSAs(po); rerenderPO(); toast(`Scheduling line ${s.no} deleted`);
+        saLog(po, `Scheduling line ${s.id} deleted · ${s.pr} · ${l.code} · ${fmtNum(s.qty)} ${l.unit}`);
+        po.timeline.push({ title: 'Scheduling Line Deleted', by: `${s.id}: ${l.code}`, at: new Date() });
+        syncSAs(po); rerenderPO(); toast(`Scheduling line ${s.id} deleted`);
       } });
   },
 };
@@ -2406,7 +2492,7 @@ function mcCheckCell(l, i) {
 /* Inspection Requests raised by the vendor in Vendor Portal/Vendor Portal.html and approved in Employee Portal/Employee Portal.html,
    shared through localStorage (same origin, e.g. Live Server). The buyer sees them under each MC once raised, and records the
    inspection result (accepted + rejected = IR qty) after the approvers have approved them. */
-const IR_STORE = 'bajel.ir.v2';
+const IR_STORE = 'trident.ir.v2';
 let irMem = [];
 /* IR lifecycle: Pending (in approval: QA Head → Procurement Manager on the Employee Portal) → Result Pending (approved; Record Inspection unlocked)
    → Ready to Dispatch (inspection recorded; Rejected when nothing was accepted). Side exits: Declined (approver) · Withdrawn (vendor) */
@@ -2435,11 +2521,11 @@ function apprNote(r) {
 
 /* Dispatch Instructions — one per Inspection Request (1:1), created by the buyer once every item is inspected.
    It covers all accepted quantity; the vendor sees it on the same PO in the Vendor Portal and submits one invoice against it. */
-const DR_STORE = 'bajel.dr.v2';
+const DR_STORE = 'trident.dr.v2';
 let drMem = [];
 /* Vendor invoices (submitted on the Vendor Portal) are many-to-many with Dispatch Instructions: one invoice can bill items of
    several DIs on a PO, and a DI's items can be billed across several invoices. Each invoice item points at { dr, idx }. */
-const INV_STORE = 'bajel.inv.v1';
+const INV_STORE = 'trident.inv.v1';
 let invMem = [];
 const readInvs = () => { if (!FLOW_MCIRDI) return []; try { const v = localStorage.getItem(INV_STORE); return v ? JSON.parse(v).invs || [] : invMem; } catch (e) { return invMem; } };
 /* overlay the invoices on a DI: item.inv, invList, status, and a summary d.invoice once every item is billed */
@@ -3294,7 +3380,7 @@ const ACTIONS = {
   },
   'add-entity': () => openModal({
     title:'Add Entity', submitLabel:'Add Entity',
-    fields:[{name:'name',label:'Entity Name',required:true,placeholder:'e.g. Hindalco Extrusions Limited'},{name:'pan',label:'PAN',placeholder:'AAACH1201R'}],
+    fields:[{name:'name',label:'Entity Name',required:true,placeholder:'e.g. Trident Extrusions Limited'},{name:'pan',label:'PAN',placeholder:'AAACH1201R'}],
     onSubmit: v => {
       const id = Math.max(...entities.map(e => e.id)) + 1;
       entities.push({ id, name:v.name.trim(), color:AVATAR_COLORS[id % AVATAR_COLORS.length], status:'active', tags: v.pan ? [{key:'pan', value:v.pan}] : [] });

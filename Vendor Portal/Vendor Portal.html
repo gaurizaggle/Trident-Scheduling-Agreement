@@ -31,7 +31,8 @@
   .rail .org{width:26px;height:26px;background:var(--green);color:#fff;border:none;font-size:8px;font-weight:700}
   .rail .org-lbl{font-size:6px;color:var(--muted);margin-top:-12px}
   .side{width:150px;flex:none;border-right:1px solid var(--border);background:#fff;position:sticky;top:0;height:100vh;overflow-y:auto;padding:20px 10px 40px}
-  .logo{margin:0 auto 18px;width:70px;text-align:center}
+  .logo{margin:0 auto 18px;width:128px;text-align:center}
+  .logo img{display:block;width:100%;height:auto}
   .logo-top{font-size:7.5px;font-weight:700;letter-spacing:.3px;color:#B4122B}
   .logo-mark{height:44px;margin-top:2px;background:conic-gradient(from 200deg,#E8541E,#F6A21E,#C8102E,#7A1F4B,#E8541E);clip-path:polygon(50% 0,100% 100%,0 100%);opacity:.95}
   .logo-name{background:#1F3F8F;color:#fff;font-size:7px;font-weight:600;letter-spacing:.6px;padding:3px 0}
@@ -334,13 +335,13 @@
 <div class="app">
   <aside class="rail">
     <button class="home" title="Home" data-nav="home"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 2 12h3v8h5v-5h4v5h5v-8h3z"/></svg></button>
-    <button class="org" title="Hindalco">HI</button><span class="org-lbl">Hindalco</span>
+    <button class="org" title="Trident">TR</button><span class="org-lbl">Trident</span>
     <button title="Add workspace"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></button>
     <button title="Settings" data-nav="settings"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
     <button title="Log out"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button>
   </aside>
   <aside class="side">
-    <div class="logo"><div class="logo-top">ADITYA BIRLA</div><div class="logo-mark"></div><div class="logo-name">HINDALCO</div></div>
+    <div class="logo"><img src="../assets/trident-logo.png" alt="Trident Group"></div>
     <div class="acct"><label for="acct">Logged in as (vendor)</label><select id="acct"></select></div>
     <nav id="nav"></nav>
   </aside>
@@ -396,7 +397,7 @@ const NAV = [
 ];
 
 /* =====================================================================
-   Data — vendor accounts viewing POs released by Hindalco (switch account in the sidebar)
+   Data — vendor accounts viewing POs released by Trident (switch account in the sidebar)
    ===================================================================== */
 const VENDORS = {
   ifm: { name:'IFM ELECTRONIC INDIA PRIVATE LIMITED', email:'info@ifm-electronic.in', phone:'9999006242', contact:'Sandeep Patil',
@@ -412,19 +413,19 @@ function setVendor(k) {
   try { localStorage.setItem('trident.vendor', k); } catch (e) {}
 }
 const OFFICES = {
-  RKM: { name:'RKT_OU_Renukoot RM', addr:'Renukoot PO: Renukoot SONEBHADRA UP 231217 India 252107 252077 hindalco@adityabirla.com', gstin:'09AAACH1201R1ZL' },
-  RKT: { name:'RKT_OU_Renukoot Stores', addr:'Renukoot PO: Renukoot SONEBHADRA UP 231217 India 252107 252077 hindalco@adityabirla.com, Pune', gstin:'09AAACH1201R1ZL' },
-  HIR: { name:'HIR_OU_Hirakud Smelter Stores', addr:'Hirakud PO: Hirakud SAMBALPUR OD 768016 India 0663 2481365 hindalco@adityabirla.com', gstin:'21AAACH1201R1ZK' },
-  ADT: { name:'ADT_OU_Aditya Smelter Stores', addr:'Aditya Aluminium, Lapanga, SAMBALPUR OD 768212 India hindalco@adityabirla.com', gstin:'21AAACH1201R2ZJ' },
-  MHN: { name:'MHN_OU_Mahan Aluminium Smelter', addr:'Mahan Aluminium, Bargawan, SINGRAULI MP 486886 India hindalco@adityabirla.com', gstin:'23AAACH1201R1ZG' },
-  DHJ: { name:'DHJ_OU_Dahej Project', addr:'Birla Copper, Lakhigam, Dahej, BHARUCH GJ 392130 India hindalco@adityabirla.com', gstin:'24AAACH1201R1ZE' },
-  SIL: { name:'SIL_OU_Silvassa Stores', addr:'Silvassa Extrusions, Piparia, SILVASSA DN 396230 India hindalco@adityabirla.com', gstin:'26AAACH1201R1ZA' },
+  RKM: { name:'RKT_OU_Renukoot RM', addr:'Renukoot PO: Renukoot SONEBHADRA UP 231217 India 252107 252077 trident@tridentindia.com', gstin:'09AAACH1201R1ZL' },
+  RKT: { name:'RKT_OU_Renukoot Stores', addr:'Renukoot PO: Renukoot SONEBHADRA UP 231217 India 252107 252077 trident@tridentindia.com, Pune', gstin:'09AAACH1201R1ZL' },
+  HIR: { name:'HIR_OU_Hirakud Smelter Stores', addr:'Hirakud PO: Hirakud SAMBALPUR OD 768016 India 0663 2481365 trident@tridentindia.com', gstin:'21AAACH1201R1ZK' },
+  ADT: { name:'ADT_OU_Aditya Smelter Stores', addr:'Aditya Aluminium, Lapanga, SAMBALPUR OD 768212 India trident@tridentindia.com', gstin:'21AAACH1201R2ZJ' },
+  MHN: { name:'MHN_OU_Mahan Aluminium Smelter', addr:'Mahan Aluminium, Bargawan, SINGRAULI MP 486886 India trident@tridentindia.com', gstin:'23AAACH1201R1ZG' },
+  DHJ: { name:'DHJ_OU_Dahej Project', addr:'Birla Copper, Lakhigam, Dahej, BHARUCH GJ 392130 India trident@tridentindia.com', gstin:'24AAACH1201R1ZE' },
+  SIL: { name:'SIL_OU_Silvassa Stores', addr:'Silvassa Extrusions, Piparia, SILVASSA DN 396230 India trident@tridentindia.com', gstin:'26AAACH1201R1ZA' },
 };
 const D = (y, m, d) => new Date(y, m - 1, d);
-const CARBON_PLANT = 'Renukoot Carbon Plant PO Renukoot SONEBHADRA UP 231217 India hindalco@adityabirla.com';
+const CARBON_PLANT = 'Renukoot Carbon Plant PO Renukoot SONEBHADRA UP 231217 India trident@tridentindia.com';
 // Manufacturing Clearance as created on the buyer portal (shown when the buyer hasn't shared newer data)
 const MC = (id, qty, officeName, address, date) => ({ id, qty, officeName, address, date, createdAt: new Date(2026, 9, 5, 11, 47), status: 'Created' });
-const HQ = ' India hindalco@adityabirla.com';
+const HQ = ' India trident@tridentindia.com';
 // [item code, ref, description, product code, qty, unit price]
 const L = (code, ref, desc, productCode, qty, price, extra = {}) =>
   ({ code, ref, desc, productCode, qty, price, hsn:'0', gst:18, delivered:0, invoiced:0, mcs:[], mcOpen:true, ...extra });
@@ -509,7 +510,7 @@ const ORDERS = [
 ];
 /* Manufacturing Clearance created by the buyer in ../Buyer.html is shared through localStorage
    (same origin, e.g. Live Server). When present it replaces the seeded clearances for that PO. */
-const MC_STORE = 'bajel.mc.v1';
+const MC_STORE = 'trident.mc.v1';
 /* Any buyer PO that has a Manufacturing Clearance is published by the buyer with its full details (saved.meta).
    POs not already in ORDERS are built here under the right vendor account (created if new), so every clearance
    the buyer creates shows up on the Vendor Portal straight away and the vendor can raise Inspection Requests on it. */
@@ -523,7 +524,7 @@ function vendorKeyFor(v) {
   }
   return key;
 }
-/* POs the buyer sends for acknowledgement (bajel.po.v1) — the vendor's acknowledgement goes back through bajel.poack.v1,
+/* POs the buyer sends for acknowledgement (trident.po.v1) — the vendor's acknowledgement goes back through trident.poack.v1,
    and the Buyer Portal moves the PO on from Vendor Acknowledgement Pending as soon as it sees it */
 const PO_STORE = 'trident.po.v1', PO_ACK_STORE = 'trident.poack.v1';
 const SENT_PO = ['ACK','GRN','INVOICE','CLOSED','CANCELLED'];
@@ -590,7 +591,7 @@ window.addEventListener('storage', e => {
   const newAck = ORDERS.filter(o => o.status === 'ACK' && !ackBefore.has(o.no));
   if (newAck.length) {
     const o = newAck[0];
-    toast(`PO ${o.no} received from Hindalco — acknowledgement pending` + (o.vendor === vendorKey ? '' : ` for ${VENDORS[o.vendor].name} — switch account to view`));
+    toast(`PO ${o.no} received from Trident — acknowledgement pending` + (o.vendor === vendorKey ? '' : ` for ${VENDORS[o.vendor].name} — switch account to view`));
   }
   if (fresh.length) {
     const [id, o] = fresh[0], v = VENDORS[o.vendor];
@@ -744,17 +745,17 @@ function detailView(o) {
     <div class="back"><button data-back aria-label="Back to orders">${icon('back', 10, 3)}</button><h2>${esc(VENDOR.name.length > 26 ? VENDOR.name.slice(0, 26) + '...' : VENDOR.name)}</h2></div>
 
     ${o.status === 'ACK' ? `<div class="banner ack"><div><b>Acknowledgement pending</b>
-        <span>Hindalco has released this PO on ${fmtLong(o.date)}. Please review the line items and acknowledge to confirm acceptance.</span></div>
+        <span>Trident has released this PO on ${fmtLong(o.date)}. Please review the line items and acknowledge to confirm acceptance.</span></div>
         <div style="display:flex;gap:8px;flex:none"><button class="btn btn-ghost" data-query>Raise Query</button>
         <button class="btn btn-primary" data-ack="${o.id}">${icon('check', 11, 2.6)} Acknowledge PO</button></div></div>` : ''}
     ${o.grns.length ? `<div class="banner"><b>GRN available for this PO</b>
         <span>${o.grns.length} Goods Receipt Note${o.grns.length > 1 ? 's have' : ' has'} been recorded for ${o.no}. <button class="link" data-goto="grn">click here</button> to view GRNs</span></div>` : ''}
     ${FLOW_MCIRDI && mcLines ? `<div class="banner mc"><b>${icon('truck', 11)} Manufacturing Clearance issued</b>
-        <span>Hindalco has released Manufacturing Clearance for ${mcLines} of ${o.lines.length} line item${o.lines.length > 1 ? 's' : ''}.
+        <span>Trident has released Manufacturing Clearance for ${mcLines} of ${o.lines.length} line item${o.lines.length > 1 ? 's' : ''}.
         Dispatch only the cleared quantity to the shipping location and on or after the earliest delivery date shown under each line item.</span></div>` : ''}
 
     ${(() => { const n = drsOf(o).filter(d => !d.invoice).length; return n ? `<div class="banner dr"><b>${icon('truck', 11)} Dispatch Instruction${n > 1 ? 's' : ''} received</b>
-        <span>Hindalco has released ${n} Dispatch Instruction${n > 1 ? 's' : ''} for inspected material. <button class="link" data-goto="dispatch">Submit the invoice</button> against each Dispatch Instruction.</span></div>` : ''; })()}
+        <span>Trident has released ${n} Dispatch Instruction${n > 1 ? 's' : ''} for inspected material. <button class="link" data-goto="dispatch">Submit the invoice</button> against each Dispatch Instruction.</span></div>` : ''; })()}
     <div class="po-title">PURCHASE ORDER / ${o.no} / ${invoicesOf(o).length} INVOICE SUBMITTED <span class="chip st-${o.status}">${STATUS[o.status]}</span></div>
     <div class="card">
       <button class="btn" data-dl-po="${o.id}">${icon('download', 11, 2.2)} Download PO</button>
@@ -792,9 +793,9 @@ function detailView(o) {
       ${o.amendments.length ? '' : '<div class="none-box">No Amendments</div>'}
     </div>
 
-    ${irSection(o)}
+    ${slSection(o)}
 
-    ${dispatchSection(o)}
+    ${FLOW_MCIRDI ? irSection(o) + dispatchSection(o) : ''}
 
     ${o.grns.length ? `<div class="sec-lbl" id="grn">GRN</div>
     <table class="simple">
@@ -826,9 +827,9 @@ function detailView(o) {
    Inspection Requests — vendor raises them against one or more Manufacturing Clearances.
    Shared through localStorage (same origin, e.g. Live Server) with:
      · ../Employee Portal — approvers (QA Head → Procurement Manager) approve / decline / hold / ask for clarification
-     · ../Buyer portal    — Hindalco admin records the inspection result and raises the Dispatch Instruction
+     · ../Buyer portal    — Trident admin records the inspection result and raises the Dispatch Instruction
    ===================================================================== */
-const IR_STORE = 'bajel.ir.v2';
+const IR_STORE = 'trident.ir.v2';
 const APPROVERS = { priya: { name: 'Priya Nair', role: 'QA Head' }, rahul: { name: 'Rahul Verma', role: 'Procurement Manager' } };
 const IR_CHAIN = ['priya', 'rahul'];
 const apprName = k => APPROVERS[k]?.name || k;
@@ -839,13 +840,13 @@ const readIRs = () => { if (!FLOW_MCIRDI) return []; try { const v = localStorag
 const isRecorded = r => r.status === 'Ready to Dispatch' || r.status === 'Rejected';
 const isClosedIr = r => r.status === 'Withdrawn' || r.status === 'Declined';
 const writeIRs = irs => { irMem = irs; try { localStorage.setItem(IR_STORE, JSON.stringify({ irs })); } catch (e) {} };
-/* Dispatch Instructions: one per Inspection Request, raised by Hindalco for all accepted quantity;
+/* Dispatch Instructions: one per Inspection Request, raised by Trident for all accepted quantity;
    the vendor submits one invoice against each */
-const DR_STORE = 'bajel.dr.v2';
+const DR_STORE = 'trident.dr.v2';
 let drMem = [];
 /* Vendor invoices are many-to-many with Dispatch Instructions: one invoice can bill items of several DIs on a PO, and a DI's
    items can be billed across several invoices. Each invoice item points at { dr, idx } — a DI and the index of its item. */
-const INV_STORE = 'bajel.inv.v1';
+const INV_STORE = 'trident.inv.v1';
 let invMem = [];
 const readInvs = () => { if (!FLOW_MCIRDI) return []; try { const v = localStorage.getItem(INV_STORE); return v ? JSON.parse(v).invs || [] : invMem; } catch (e) { return invMem; } };
 const writeInvs = invs => { invMem = invs; try { localStorage.setItem(INV_STORE, JSON.stringify({ invs })); } catch (e) {} };
@@ -868,7 +869,7 @@ const drsOf = o => readDRs().filter(d => d.po === o.no);
 const drOfIr = r => readDRs().find(d => d.po === r.po && d.irId === r.id);
 const drAmount = d => r2(d.items.reduce((a, x) => a + x.qty * x.price * (1 + x.gst / 100), 0));
 const drChip = st => `<span class="chip st-${st === 'Invoice Submitted' ? 'DRA' : st === 'Partially Invoiced' ? 'DRP' : 'DRR'}">${st}</span>`;
-/* clearances released with "Inspection Required" off skip the IR flow: Ready to Dispatch at once, Hindalco raises the DR on the MC itself */
+/* clearances released with "Inspection Required" off skip the IR flow: Ready to Dispatch at once, Trident raises the DR on the MC itself */
 const irReq = m => m.irRequired !== false;
 const drOfMc = (o, mcId) => readDRs().find(d => d.po === o.no && !d.irId && d.mcId === mcId);
 const mcDirectStage = (o, m) => { const d = drOfMc(o, m.id); return !d ? 'Ready to Dispatch' : d.invoice ? 'Invoice Submitted' : 'Invoice Pending'; };
@@ -934,7 +935,7 @@ function irWithdrawModal(o, id) {
   if (!irWithdrawable(o.no, id)) return toast(`${id} is no longer in approval and can't be withdrawn`);
   modal(`Withdraw Inspection Request · ${id}`, `
     <p style="margin:0 0 12px;font-size:12px">Withdrawing stops the approval of <b>${id}</b>${items.length > 1 ? ` and all <b>${items.length}</b> of its merged items` : ''}.
-      The request stays on record as <b>Withdrawn</b> for you and Hindalco, and the quantity becomes available for inspection again on ${items.length > 1 ? 'each clearance' : 'the clearance'}.</p>
+      The request stays on record as <b>Withdrawn</b> for you and Trident, and the quantity becomes available for inspection again on ${items.length > 1 ? 'each clearance' : 'the clearance'}.</p>
     <table class="mini merge"><thead><tr><th>Item</th><th>MC ID</th><th>Line Item</th><th>Inspection Qty</th><th>Proposed Date</th></tr></thead>
       <tbody>${items.map(r => `<tr><td>${r.item || 1}</td><td><b>${r.mcId}</b></td><td>${r.lineCode}</td><td>${fmtN(r.qty)}${r.unit ? ` <span class="faint">${r.unit}</span>` : ''}</td>
         <td>${fmtD(parseISO(r.inspDate))}</td></tr>`).join('')}</tbody></table>
@@ -968,9 +969,9 @@ function irOverall(items) {
 }
 /* filter stage: once Ready to Dispatch, how far dispatch has got — tells the supplier where an invoice is due */
 const IR_STAGES = [
-  ['Pending', 'In approval at Hindalco'], ['Result Pending', 'Approved · inspection report awaited'], ['Ready to Dispatch', 'Inspected · awaiting Dispatch Instruction'],
+  ['Pending', 'In approval at Trident'], ['Result Pending', 'Approved · inspection report awaited'], ['Ready to Dispatch', 'Inspected · awaiting Dispatch Instruction'],
   ['Invoice Pending', 'Dispatch Instruction received · submit the invoice'], ['Invoice Submitted', 'Invoice submitted against the Dispatch Instruction'],
-  ['Rejected', 'Nothing accepted'], ['Declined', 'Declined by a Hindalco approver'], ['Withdrawn', 'Withdrawn by you'] ];
+  ['Rejected', 'Nothing accepted'], ['Declined', 'Declined by a Trident approver'], ['Withdrawn', 'Withdrawn by you'] ];
 function irStage(items) {
   const st = irOverall(items);
   if (st !== 'Ready to Dispatch') return st;
@@ -1049,7 +1050,7 @@ function irViewModal(o, id) {
   done.forEach(r => later.push({ at: r.inspectedAt ? parseISO(r.inspectedAt) : created, st: r.accepted > 0 ? 'approved' : 'declined', lb: r.inspectionWaived ? 'Inspection Waived' : 'Inspection Recorded',
     nm:`Item ${r.item || 1} · ${r.mcId}`, ln:[`Status: ${r.status.toUpperCase()}`, `${fmtN(r.accepted)} accepted · ${fmtN(r.rejected)} rejected`, ...(r.inspector ? [`Inspector: ${r.inspector}`] : [])] }));
   if (dr) {
-    later.push({ at: new Date(dr.createdAt), st:'approved', lb:'Dispatch Instruction', nm:`${dr.id} released by Hindalco`, ln:[`${unitTotals(dr.items, x => x.qty)} · dispatch by ${fmtD(parseISO(dr.dispatchBy))}`, `Sent on: ${fmtDT(new Date(dr.createdAt))}`] });
+    later.push({ at: new Date(dr.createdAt), st:'approved', lb:'Dispatch Instruction', nm:`${dr.id} released by Trident`, ln:[`${unitTotals(dr.items, x => x.qty)} · dispatch by ${fmtD(parseISO(dr.dispatchBy))}`, `Sent on: ${fmtDT(new Date(dr.createdAt))}`] });
     if (dr.invoice) later.push({ at: new Date(dr.invoice.createdAt), st:'approved', lb:'Invoice', nm:`${dr.invoice.no} submitted`, ln:[`INR ${fmtN(dr.invoice.amount)}`, `Sent on: ${fmtDT(new Date(dr.invoice.createdAt))}`] });
   }
   later.sort((x, y) => x.at - y.at);
@@ -1114,7 +1115,7 @@ function irViewModal(o, id) {
 
     <div class="sec">Clarifications</div>
     <div class="clar">${(a.clar || []).map(c => `<div class="msg ${c.by === 'vendor' ? 'me' : ''}"><div class="h"><b>${c.by === 'vendor' ? 'You' : esc(apprName(c.by))}</b> · ${fmtDT(new Date(c.at))}</div>${esc(c.text)}</div>`).join('')
-      || '<div class="faint">No clarifications asked by Hindalco approvers.</div>'}</div>
+      || '<div class="faint">No clarifications asked by Trident approvers.</div>'}</div>
     ${canReply ? `<div class="clar-reply"><textarea class="inp" id="clarTxt" rows="2" placeholder="Message ${esc(apprName(a.chain[a.level]))} (current approver)"></textarea>
       <button class="btn btn-primary" data-clar-send="${id}">Send</button></div>` : ''}
 
@@ -1179,40 +1180,68 @@ function selBar(o) {
 }
 
 /* Manufacturing Clearance released by the buyer — vendor selects one or more to raise an Inspection Request.
-   A clearance withdrawn by Hindalco stays listed (greyed out) and can't be selected. */
+   A clearance withdrawn by Trident stays listed (greyed out) and can't be selected. */
 const LINE_TABS = [['mc', 'Manufacturing Clearance'], ['ir', 'Inspection Requests'], ['dr', 'Dispatch Instructions']];
-/* ---------- Scheduling Agreement lines (read-only here; the buyer creates / revises them) ----------
-   The field list comes with the data from the Buyer Portal, so both portals always show the same columns. */
-const SA_STORE = 'trident.sa.v1';
-const SL_FIELDS_DEFAULT = [
-  { key: 'date', label: 'Delivery Date', type: 'date' }, { key: 'qty', label: 'Scheduled Qty', type: 'qty' },
-  { key: 'office', label: 'Ship-To Location', type: 'office' }, { key: 'remarks', label: 'Remarks', type: 'text' }];
+/* ---------- Scheduling Agreement lines (read-only here; the buyer creates / revises them, status comes from SAP) ----------
+   Labels, column layout and the lines themselves come with the data from the Buyer Portal, so both portals always match.
+   Shown twice: a dropdown under each line item (that product's lines) and a PR-wise Scheduling Lines section. */
+const SA_STORE = 'trident.sa.v2';
+const SL_LABELS_DEFAULT = { id: 'SA Line ID', li: 'Line Item No.', product: 'Product Name', pr: 'PR Number', date: 'Delivery Date', qty: 'Quantity', open: 'Open Qty', status: 'Status' };
+const SL_COLS_DEFAULT = { line: ['id', 'pr', 'date', 'qty', 'open', 'status'], section: ['id', 'li', 'product', 'date', 'qty', 'open', 'status'] };
 function readSA() {
-  try { const s = JSON.parse(localStorage.getItem(SA_STORE)); return { fields: s?.fields || SL_FIELDS_DEFAULT, pos: s?.pos || {} }; }
-  catch (e) { return { fields: SL_FIELDS_DEFAULT, pos: {} }; }
+  try { const s = JSON.parse(localStorage.getItem(SA_STORE)); return { labels: s?.labels || SL_LABELS_DEFAULT, cols: s?.cols || SL_COLS_DEFAULT, pos: s?.pos || {} }; }
+  catch (e) { return { labels: SL_LABELS_DEFAULT, cols: SL_COLS_DEFAULT, pos: {} }; }
 }
+const SL_TONE = { green: 'st-OPEN', amber: 'st-ACK', red: 'st-CANCELLED', blue: 'st-INV', gray: 'st-CLOSED' };
+function slCell(key, s, l) {
+  const u = l.unit ? ` <span class="faint">${esc(l.unit)}</span>` : '';
+  switch (key) {
+    case 'id': return `<b>${esc(s.id)}</b>`;
+    case 'li': return esc(s.li);
+    case 'product': return `<div style="max-width:300px;white-space:normal">${esc((s.product || '').length > 80 ? s.product.slice(0, 80) + '…' : s.product || '')}</div><div class="faint">${esc(s.code || '')}</div>`;
+    case 'pr': return `<b>${esc(s.pr)}</b>`;
+    case 'date': return fmtD(parseISO(s.date));
+    case 'qty': return `<b>${fmtN(s.qty)}</b>${u}`;
+    case 'open': return `${fmtN(s.open)}${u}`;
+    case 'status': return `<span class="chip ${SL_TONE[s.tone] || 'st-CLOSED'}">${esc(s.status)}</span>`;
+  }
+  return '';
+}
+const slEmptyMsg = o => o.status === 'ACK' ? 'Acknowledge this PO to receive the delivery schedule from Trident.'
+  : o.status === 'CANCELLED' ? 'This PO is cancelled.' : 'Trident has not released any scheduling lines yet.';
+const slOpenSet = () => (ui.slOpen ||= new Set());
 function slRow(o, l, i) {
-  const sa = readSA(), sls = [...(sa.pos[o.no]?.[l.ref] || [])].sort((a, b) => a.date.localeCompare(b.date) || a.no.localeCompare(b.no));
+  const sa = readSA(), key = `${o.no}:${l.ref}`, isOpen = slOpenSet().has(key);
+  const sls = [...(sa.pos[o.no]?.[l.ref] || [])].sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
   const sched = r2(sls.reduce((a, s) => a + s.qty, 0)), pct = Math.min(100, l.qty ? sched / l.qty * 100 : 0);
-  const cell = (f, s) => f.type === 'date' ? fmtD(parseISO(s[f.key]))
-    : f.type === 'qty' ? `<b>${fmtN(s[f.key])}</b>${l.unit ? ` <span class="faint">${esc(l.unit)}</span>` : ''}`
-    : f.type === 'office' ? `${esc(s[f.key + 'Name'] || '—')}<div class="faint" style="white-space:normal;max-width:240px">${esc(s[f.key + 'Addr'] || '')}</div>`
-    : s[f.key] ? esc(s[f.key]) : '<span class="faint">—</span>';
-  const empty = o.status === 'ACK' ? 'Acknowledge this PO to receive the delivery schedule from Hindalco.'
-    : o.status === 'CANCELLED' ? 'This PO is cancelled.' : 'Hindalco has not released any scheduling lines for this line item yet.';
   return `<tr class="lp-row"><td colspan="10">
     <div class="lp" aria-label="Scheduling lines for line ${i + 1} · ${l.code}">
-      <div class="lp-head">
-        <span class="lp-title"><span class="ln">Line ${i + 1}</span><span class="cd">${l.code}</span> · Scheduling Lines</span>
+      <div class="lp-head" data-sltog="${esc(key)}" style="cursor:pointer" title="${isOpen ? 'Hide' : 'Show'} scheduling lines">
+        <span class="lp-title"><span class="ln">Line ${i + 1}</span><span class="cd">${l.code}</span> · Scheduling Lines <span class="chip st-CLOSED">${sls.length}</span></span>
         <span class="mc-meter"><span style="width:${pct}%"></span></span>
         <span class="muted">${fmtN(sched)} of ${fmtN(l.qty)}${l.unit ? ` ${esc(l.unit)}` : ''} scheduled${sched < l.qty ? ` · <b>${fmtN(r2(l.qty - sched))} not yet scheduled</b>` : ''}</span>
+        <span style="display:grid;place-items:center">${icon(isOpen ? 'up' : 'chevR', 12, 2.4)}</span>
       </div>
-      <div class="lp-body">${sls.length ? `<table class="mini"><thead><tr><th>Sched. Line</th>${sa.fields.map(f => `<th>${esc(f.label)}</th>`).join('')}<th>Last Updated</th></tr></thead>
-        <tbody>${sls.map(s => `<tr><td><b>${esc(s.no)}</b></td>${sa.fields.map(f => `<td>${cell(f, s)}</td>`).join('')}
-          <td>${s.rev > 1 ? `<span class="chip st-ACK">Revised · Rev ${s.rev}</span> ` : ''}<span class="faint">${fmtDT(new Date(s.updatedAt))}</span></td></tr>`).join('')}</tbody></table>`
-        : `<div class="lp-empty">${empty}</div>`}</div>
+      ${isOpen ? `<div class="lp-body">${sls.length ? `<table class="mini"><thead><tr>${sa.cols.line.map(c => `<th>${esc(sa.labels[c])}</th>`).join('')}</tr></thead>
+        <tbody>${sls.map(s => `<tr>${sa.cols.line.map(c => `<td>${slCell(c, s, l)}</td>`).join('')}</tr>`).join('')}</tbody></table>`
+        : `<div class="lp-empty">${slEmptyMsg(o)}</div>`}</div>` : ''}
     </div>
   </td></tr>`;
+}
+/* Scheduling Lines section: every line of the PO, grouped PR-wise */
+function slSection(o) {
+  const sa = readSA();
+  const all = o.lines.flatMap(l => (sa.pos[o.no]?.[l.ref] || []).map(s => ({ s, l })));
+  const groups = new Map();
+  all.forEach(x => { if (!groups.has(x.s.pr)) groups.set(x.s.pr, []); groups.get(x.s.pr).push(x); });
+  const prs = [...groups.keys()].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  return `<div class="sec-lbl" id="schedule">SCHEDULING LINES ${all.length ? `<span class="chip st-CLOSED">${all.length}</span> <span class="chip st-CLOSED">${prs.length} PR${prs.length === 1 ? '' : 's'}</span>` : ''}</div>
+    ${prs.length ? prs.map(pr => {
+      const rows = groups.get(pr).sort((a, b) => a.s.date.localeCompare(b.s.date) || String(a.s.li).localeCompare(String(b.s.li), undefined, { numeric: true }) || a.s.id.localeCompare(b.s.id));
+      return `<div class="ir-line"><div class="ir-line-h"><div class="code">${esc(pr)}</div><span class="m"><b>${rows.length}</b> scheduling line${rows.length === 1 ? '' : 's'}</span></div>
+        <div style="overflow-x:auto"><table class="mini"><thead><tr>${sa.cols.section.map(c => `<th>${esc(sa.labels[c])}</th>`).join('')}</tr></thead>
+          <tbody>${rows.map(({ s, l }) => `<tr>${sa.cols.section.map(c => `<td>${slCell(c, s, l)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;
+    }).join('') : `<div class="placeholder" style="padding:22px">${slEmptyMsg(o)}</div>`}`;
 }
 function mcRow(o, l, i) {
   syncSel(o);
@@ -1226,13 +1255,13 @@ function mcRow(o, l, i) {
   const count = { mc: liveMcs(l).length, ir: irs.length, dr: drs.length };
   const attn = { mc: avail.length > 0, ir: irs.some(r => reinspectable(o, r)), dr: drs.some(d => !d.invoice) };
   let body;
-  if (tab === 'mc') body = l.mcs.length ? `<div class="mc-hint">Clearances marked “Not required” need no inspection — Hindalco sends the Dispatch Instruction directly. Tick one or more other clearances — across any line items of this PO — to merge them into one Inspection Request. Click an MC ID for its details.</div>
+  if (tab === 'mc') body = l.mcs.length ? `<div class="mc-hint">Clearances marked “Not required” need no inspection — Trident sends the Dispatch Instruction directly. Tick one or more other clearances — across any line items of this PO — to merge them into one Inspection Request. Click an MC ID for its details.</div>
       <table class="mini"><thead><tr><th style="width:26px"><input type="checkbox" class="mc-cb" data-irsel-line="${i}" ${allOn ? 'checked' : ''} ${avail.length ? '' : 'disabled'} aria-label="Select all clearances of ${l.code}"></th>
         <th>MC ID</th><th>Cleared Qty</th><th>Shipping Location</th><th>Shipping Address</th><th>Earliest Delivery Date</th><th>Released On</th><th>Inspection</th><th>Status</th></tr></thead>
       <tbody>${l.mcs.map((m, k) => {
         const mirs = irsOf(o, m), s = irSummary(m, mirs), on = ui.irSel.has(m.id), w = isWithdrawnMc(m), direct = !irReq(m), dr = direct ? drOfMc(o, m.id) : null;
         return `<tr class="${on ? 'sel' : ''} ${w ? 'wd' : ''}"><td><input type="checkbox" class="mc-cb" data-irsel="${m.id}" ${on ? 'checked' : ''}
-            ${s.available > 0 ? '' : `disabled title="${w ? 'Withdrawn by Hindalco' : direct ? 'Inspection not required' : 'The full cleared quantity is accepted or under inspection'}"`} aria-label="Select ${m.id}"></td>
+            ${s.available > 0 ? '' : `disabled title="${w ? 'Withdrawn by Trident' : direct ? 'Inspection not required' : 'The full cleared quantity is accepted or under inspection'}"`} aria-label="Select ${m.id}"></td>
         <td><button class="mc-id" data-mcopen="${i}:${k}" title="View clearance">${m.id} ${icon('chevR', 9, 2.6)}</button></td>
         <td>${fmtN(m.qty)}${l.unit ? ` <span class="faint">${l.unit}</span>` : ''}</td><td>${esc(mcLoc(m).name)}</td>
         <td class="muted" style="max-width:240px;white-space:normal">${esc(mcLoc(m).addr)}</td><td>${fmtD(m.date)}</td>
@@ -1243,9 +1272,9 @@ function mcRow(o, l, i) {
           : direct ? `${irChip(mcDirectStage(o, m))}${dr ? `<div class="appr-note"><button class="mc-id" data-dr="${dr.id}">${dr.id}</button></div>` : ''}`
           : `<span class="chip st-OPEN">${m.status}</span>`}</td></tr>`;
       }).join('')}</tbody></table>`
-    : `<div class="lp-empty">Hindalco has not released a Manufacturing Clearance for this line item yet. Don't dispatch until one is released.</div>`;
+    : `<div class="lp-empty">Trident has not released a Manufacturing Clearance for this line item yet. Don't dispatch until one is released.</div>`;
   else if (tab === 'ir') body = irs.length ? irTable(irs, o, true)
-    : `<div class="lp-empty">${l.mcs.length ? 'No Inspection Request raised on this line item yet. Tick a clearance in the Manufacturing Clearance tab to raise one.' : 'An Inspection Request can be raised once Hindalco releases a Manufacturing Clearance.'}</div>`;
+    : `<div class="lp-empty">${l.mcs.length ? 'No Inspection Request raised on this line item yet. Tick a clearance in the Manufacturing Clearance tab to raise one.' : 'An Inspection Request can be raised once Trident releases a Manufacturing Clearance.'}</div>`;
   else body = drs.length ? `<table class="mini"><thead><tr><th>Dispatch Instruction</th><th>Inspection Request</th><th>MC ID</th><th>Dispatch Qty (this line)</th>
       <th>Ship To</th><th>Dispatch By</th><th>Status</th><th>Invoice</th></tr></thead>
       <tbody>${drs.map(d => { const mine = d.items.filter(x => ids.has(x.mcId)); return `<tr>
@@ -1256,7 +1285,7 @@ function mcRow(o, l, i) {
         <td style="white-space:normal">${[...new Set(mine.map(x => x.shipTo))].map(esc).join('<br>')}</td>
         <td>${d.dispatchBy ? fmtD(parseISO(d.dispatchBy)) : '-'}</td><td>${drChip(d.status)}</td>
         <td>${d.invoice ? `<b>${esc(d.invoice.no)}</b>` : `<button class="btn btn-primary btn-xs" data-inv-new="${d.id}">Submit Invoice</button>`}</td></tr>`; }).join('')}</tbody></table>`
-    : `<div class="lp-empty">No Dispatch Instruction from Hindalco for this line item yet. It arrives once inspected quantity is accepted, or directly for clearances that need no inspection.</div>`;
+    : `<div class="lp-empty">No Dispatch Instruction from Trident for this line item yet. It arrives once inspected quantity is accepted, or directly for clearances that need no inspection.</div>`;
   return `<tr class="lp-row"><td colspan="10">
     <div class="lp" aria-label="Tracking for line ${i + 1} · ${l.code}">
       <div class="lp-head">
@@ -1277,7 +1306,7 @@ function mcModal(o, i, k) {
   const l = o.lines[i], m = l.mcs[k], irs = irsOf(o, m), s = irSummary(m, irs), w = isWithdrawnMc(m);
   const others = [...ui.irSel].filter(id => id !== m.id).length;
   modal(`Manufacturing Clearance · ${m.id}`, `
-    ${w ? `<div class="banner" style="margin-bottom:14px"><b>Withdrawn by Hindalco${m.withdrawnAt ? ` on ${fmtD(m.withdrawnAt)}` : ''}</b>
+    ${w ? `<div class="banner" style="margin-bottom:14px"><b>Withdrawn by Trident${m.withdrawnAt ? ` on ${fmtD(m.withdrawnAt)}` : ''}</b>
       <span>${m.withdrawReason ? esc(m.withdrawReason) : 'This clearance is no longer valid. Do not manufacture or dispatch against it.'}</span></div>` : ''}
     <div class="kv">
       <div><div class="k">PO Number</div><div class="v">${o.no}</div></div>
@@ -1296,18 +1325,18 @@ function mcModal(o, i, k) {
       <div class="hi"><div class="k">Available for Inspection</div><div class="v">${fmtN(s.available)}</div></div>
     </div>
     ${!irReq(m) ? `<div class="sub-h">Dispatch</div><div style="padding:4px 0 2px;font-size:11px">Inspection is <b>not required</b> for this clearance. Status: ${irChip(mcDirectStage(o, m))}
-      ${drOfMc(o, m.id) ? ` · <button class="mc-id" data-dr="${drOfMc(o, m.id).id}">${drOfMc(o, m.id).id}</button>` : ' · awaiting Dispatch Instruction from Hindalco'}</div>`
+      ${drOfMc(o, m.id) ? ` · <button class="mc-id" data-dr="${drOfMc(o, m.id).id}">${drOfMc(o, m.id).id}</button>` : ' · awaiting Dispatch Instruction from Trident'}</div>`
     : `<div class="sub-h">Inspection Requests</div>
     ${irs.length ? irTable(irs, o) : '<div class="faint" style="padding:6px 0 2px">No Inspection Request raised against this clearance yet.</div>'}`}`,
     `<button class="btn btn-ghost" data-close-btn>Close</button>
-     ${!irReq(m) ? '' : `<button class="btn btn-primary" data-ir-new="${m.id}" ${s.available > 0 ? '' : `disabled title="${w ? 'Withdrawn by Hindalco' : 'The full cleared quantity is accepted or under inspection'}"`}>${icon('plus', 11, 2.6)} Create Inspection Request${others ? ` (+${others} selected)` : ''}</button>`}`, true);
+     ${!irReq(m) ? '' : `<button class="btn btn-primary" data-ir-new="${m.id}" ${s.available > 0 ? '' : `disabled title="${w ? 'Withdrawn by Trident' : 'The full cleared quantity is accepted or under inspection'}"`}>${icon('plus', 11, 2.6)} Create Inspection Request${others ? ` (+${others} selected)` : ''}</button>`}`, true);
 }
 
 /* ---------- Intermediate screen: every item of the selected clearances, one row per unique MC ---------- */
 let irDraft = null;
 function irMergeModal(o, ids) {
   const noInsp = [...new Set(ids)].filter(id => { const f = findMc(o, id); return f && !irReq(f.m); });
-  if (noInsp.length) toast(`Inspection is not required for ${noInsp.join(', ')} — Hindalco will send the Dispatch Instruction directly`);
+  if (noInsp.length) toast(`Inspection is not required for ${noInsp.join(', ')} — Trident will send the Dispatch Instruction directly`);
   ids = [...new Set(ids)].filter(id => { const f = findMc(o, id); return f && irReq(f.m) && mcAvail(o, f.m) > 0; });
   if (!ids.length && noInsp.length) return;
   if (!ids.length) return toast('Select at least one clearance with quantity available for inspection');
@@ -1489,7 +1518,7 @@ function dispatchListView() {
       <thead><tr><th></th><th>Dispatch Instruction</th><th>PO Number</th><th>Inspection Request / MC</th><th>Items</th><th>Dispatch Qty</th>
         <th class="right">Value incl. GST</th><th>Dispatch By</th><th>Status</th><th>Action</th></tr></thead>
       <tbody>${rows.length ? rows.map(row).join('')
-      : `<tr><td colspan="10" class="empty">${all.length ? 'No Dispatch Instructions match.' : 'No Dispatch Instructions yet. Hindalco releases one once material is inspected, or straight away for clearances that need no inspection.'}</td></tr>`}</tbody>
+      : `<tr><td colspan="10" class="empty">${all.length ? 'No Dispatch Instructions match.' : 'No Dispatch Instructions yet. Trident releases one once material is inspected, or straight away for clearances that need no inspection.'}</td></tr>`}</tbody>
     </table></div>
     ${sel.length ? `<div class="sel-bar" role="region" aria-label="Selected items">
       <span><b>${sel.length}</b> item${sel.length > 1 ? 's' : ''} from <b>${nDi}</b> Dispatch Instruction${nDi > 1 ? 's' : ''} · PO ${sel[0].d.po} · INR ${fmtN(r2(sel.reduce((a, s) => a + itemVal(s.x), 0)))}</span>
@@ -1720,10 +1749,11 @@ function downloadItems(o) {
    Events
    ===================================================================== */
 document.addEventListener('click', e => {
-  const t = e.target.closest('button, .nav-item, [data-nav]');
+  const t = e.target.closest('button, .nav-item, [data-nav], [data-sltog]');
   if (!t) return;
   const d = t.dataset;
   const cur = byId((location.hash.split('/')[2]) || 0);
+  if (d.sltog) { const s = slOpenSet(); s.has(d.sltog) ? s.delete(d.sltog) : s.add(d.sltog); rerender(); return; }
   if (d.nav) { location.hash = `#/${d.nav}`; return; }
   if (d.ditab) { ui.diTab = d.ditab; route(); return; }
   if (d.tab) { ui.tab = d.tab; ui.status = null; if (location.hash !== '#/orders') location.hash = '#/orders'; else route(); return; }
@@ -1768,16 +1798,16 @@ document.addEventListener('click', e => {
   if ('closeBtn' in d) { closeModal(); return; }
   if (d.dlItems) { downloadItems(byId(d.dlItems)); return; }
   if (d.dlPo) { toast(`PO ${byId(d.dlPo).no}.pdf downloaded`); return; }
-  if ('query' in d) { toast('Query raised with the Hindalco buyer'); return; }
+  if ('query' in d) { toast('Query raised with the Trident buyer'); return; }
   if (d.ack) {
     const o = byId(d.ack);
     modal('Acknowledge Purchase Order', `<p style="margin:0 0 10px;font-size:12px">You are confirming acceptance of PO <b>${o.no}</b>
       for <b>INR ${fmtN(poTotal(o))}</b> (${o.lines.length} line items), deliverable to ${esc(OFFICES[o.office].name)} by ${fmtD(o.deliveryDate)}.</p>
-      <p class="muted" style="margin:0;font-size:11px">Hindalco will be notified and the PO status will change to Open.</p>`,
+      <p class="muted" style="margin:0;font-size:11px">Trident will be notified and the PO status will change to Open.</p>`,
       `<button class="btn btn-ghost" data-close-btn>Cancel</button><button class="btn btn-primary" data-ack-ok="${o.id}">Acknowledge</button>`);
     return;
   }
-  if (d.ackOk) { const o = byId(d.ackOk); o.status = 'OPEN'; writeAck(o); closeModal(); route(); toast(`PO ${o.no} acknowledged — Hindalco notified`); return; }
+  if (d.ackOk) { const o = byId(d.ackOk); o.status = 'OPEN'; writeAck(o); closeModal(); route(); toast(`PO ${o.no} acknowledged — Trident notified`); return; }
 });
 document.addEventListener('input', e => {
   if (e.target.dataset?.irq && irDraft) { irDraft.qty[e.target.dataset.irq] = e.target.value; return; }

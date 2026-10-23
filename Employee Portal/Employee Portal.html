@@ -425,17 +425,17 @@ function toast(msg, ic = 'check') {
 }
 
 /* =====================================================================
-   Data — Hindalco employees approving Bajel Manufacturing Clearance flows.
+   Data — Trident employees approving Trident Manufacturing Clearance flows.
    Vendors, offices, PO numbers and MC ids line up with the Buyer and Vendor portals.
    ===================================================================== */
 const PEOPLE = {
-  rahul:   { name:'Rahul Verma',     email:'rahul.verma@hindalco.com',     dept:'Procurement',        office:'UP-Renukoot',      code:'0012', role:'Procurement Manager', persona:true },
-  priya:   { name:'Priya Nair',      email:'priya.nair@hindalco.com',      dept:'Quality Assurance',  office:'Odisha-Hirakud',   code:'0031', role:'QA Head', persona:true, canWaive:true },
-  amit:    { name:'Amit Khanna',     email:'amit.khanna@hindalco.com',     dept:'Operations',         office:'UP-Renukoot',      code:'0004', role:'Plant Head', canWaive:true },
-  karan:   { name:'Karan Sharma',    email:'karan.sharma@hindalco.com',    dept:'Procurement',        office:'UP-Renukoot',      code:'0045', role:'Buyer' },
-  srinivas:{ name:'Srinivas Rao',    email:'srinivas.rao@hindalco.com',    dept:'Engineering',        office:'Maharashtra-Pune', code:'0007', role:'Buyer' },
-  anil:    { name:'Anil Gupta',      email:'anil.gupta@hindalco.com',      dept:'Stores',             office:'Odisha-Aditya',    code:'0058', role:'Stores Officer' },
-  meera:   { name:'Meera Joshi',     email:'meera.joshi@hindalco.com',     dept:'Treasury',           office:'Mumbai-HO',        code:'0022', role:'Treasury Manager' },
+  rahul:   { name:'Rahul Verma',     email:'rahul.verma@trident.com',     dept:'Procurement',        office:'UP-Renukoot',      code:'0012', role:'Procurement Manager', persona:true },
+  priya:   { name:'Priya Nair',      email:'priya.nair@trident.com',      dept:'Quality Assurance',  office:'Odisha-Hirakud',   code:'0031', role:'QA Head', persona:true, canWaive:true },
+  amit:    { name:'Amit Khanna',     email:'amit.khanna@trident.com',     dept:'Operations',         office:'UP-Renukoot',      code:'0004', role:'Plant Head', canWaive:true },
+  karan:   { name:'Karan Sharma',    email:'karan.sharma@trident.com',    dept:'Procurement',        office:'UP-Renukoot',      code:'0045', role:'Buyer' },
+  srinivas:{ name:'Srinivas Rao',    email:'srinivas.rao@trident.com',    dept:'Engineering',        office:'Maharashtra-Pune', code:'0007', role:'Buyer' },
+  anil:    { name:'Anil Gupta',      email:'anil.gupta@trident.com',      dept:'Stores',             office:'Odisha-Aditya',    code:'0058', role:'Stores Officer' },
+  meera:   { name:'Meera Joshi',     email:'meera.joshi@trident.com',     dept:'Treasury',           office:'Mumbai-HO',        code:'0022', role:'Treasury Manager' },
   sandeep: { name:'Sandeep Patil',   email:'info@ifm-electronic.in',       dept:'Vendor · IFM Electronic', office:'Kolhapur',     code:'V-10010038', role:'Vendor', vendor:true },
   rakesh:  { name:'Rakesh Palriwal', email:'sales@palriwalindustries.in',  dept:'Vendor · Palriwal Industries', office:'Mirzapur', code:'V-10010021', role:'Vendor', vendor:true },
 };
@@ -447,7 +447,7 @@ const VENDORS = {
 const OFFICES = {
   RKM:'RKM - Renukoot RM', RKT:'RKT - Renukoot Stores', HIR:'HIR - Hirakud Smelter Stores', ADT:'ADT - Aditya Smelter Stores', MHN:'MHN - Mahan Aluminium Smelter',
 };
-const BILLING = 'Hindalco Industries Ltd, Renukoot PO: Renukoot, SONEBHADRA UP 231217';
+const BILLING = 'Trident Limited, Renukoot PO: Renukoot, SONEBHADRA UP 231217';
 const TYPES = {
   po: { slug:'purchase-order', label:'Purchase Order', approval:'Purchase Order Approval' },
   ir: { slug:'inspection-request', label:'Inspection Request', approval:'Inspection Request Approval' },
@@ -490,12 +490,12 @@ function seed() {
   add({ id:'r10', type:'bg', ref:'BG/0713623BG0001136', title:'PBG - Palriwal Industries', asker:'meera', vendor:'palriwal', office:'RKM', poNo:'13662356078',
     chain:['rahul'], received:AT(10,5,10,2), amount:4842000,
     kind:'Performance Bank Guarantee (PBG)', bank:'State Bank of India', branch:'Mirzapur Main Branch', issued:AT(9,30), expiry:new Date(2027,8,30), claim:new Date(2027,11,31),
-    beneficiary:'Hindalco Industries Limited', files:[pdf('PBG_SBI_0001136.pdf')],
+    beneficiary:'Trident Limited', files:[pdf('PBG_SBI_0001136.pdf')],
     history:[{ t:'start', by:'meera', at:AT(10,5,10,0) }] });
   add({ id:'r11', type:'bg', ref:'BG/8887', title:'ABG - IFM Electronic', asker:'meera', vendor:'ifm', office:'RKT', poNo:'13662310003',
     chain:['rahul'], received:AT(9,29,15,30), amount:200000,
     kind:'Advance Bank Guarantee (ABG)', bank:'HDFC Bank', branch:'Kolhapur Branch', issued:AT(9,25), expiry:new Date(2027,2,31), claim:new Date(2027,3,30),
-    beneficiary:'Hindalco Industries Limited', files:[pdf('ABG_HDFC_8887.pdf')],
+    beneficiary:'Trident Limited', files:[pdf('ABG_HDFC_8887.pdf')],
     history:[{ t:'start', by:'meera', at:AT(9,29,15,28) }] });
 
   // ---- Raised by Rahul (shows under My Approvals) ----
@@ -531,7 +531,7 @@ function save() { try { localStorage.setItem(STORE, JSON.stringify({ reqs: REQS,
    The IR record is the source of truth: approvals, holds and clarifications made here are written back to it,
    so the Vendor and Buyer portals show the status as it changes. A merged IR (several MC items) is one approval.
    ===================================================================== */
-const IR_STORE = 'bajel.ir.v2';
+const IR_STORE = 'trident.ir.v2';
 const readSharedIRs = () => { try { return (JSON.parse(localStorage.getItem(IR_STORE) || 'null')?.irs || []).map(x => x.status === 'Report Pending' ? { ...x, status: 'Result Pending' } : x); } catch (e) { return []; } };
 const writeSharedIRs = irs => { try { localStorage.setItem(IR_STORE, JSON.stringify({ irs })); } catch (e) {} };
 /* register the IR's vendor (and its contact person, who is the requester) so the existing lookups work */
@@ -904,7 +904,7 @@ function leftPane(r) {
     return `<h2>Inspection Request · ${esc(r.ref)}</h2>
       ${r.status === 'withdrawn' ? `<div class="note">${icon('info', 18)}<span>Withdrawn by the vendor${r.withdrawReason ? ` — “${esc(r.withdrawReason)}”` : ''}. No action needed.</span></div>` : ''}
       ${nWaived ? `<div class="note">${icon('info', 18)}<span>Inspection waived for ${nWaived} of ${r.lines.length} item${r.lines.length > 1 ? 's' : ''}. After final approval ${nWaived > 1 ? 'those items are' : 'that item is'} accepted in full without an inspection report${nWaived < r.lines.length ? '; the rest still go for inspection' : ''}.</span></div>` : ''}
-      <div class="note info">${icon('info', 18)}<span>Raised by the vendor on the Vendor Portal. Once every approver approves, Hindalco's buyer can record the inspection result and raise the Dispatch Instruction.</span></div>
+      <div class="note info">${icon('info', 18)}<span>Raised by the vendor on the Vendor Portal. Once every approver approves, Trident's buyer can record the inspection result and raise the Dispatch Instruction.</span></div>
       ${vendorBlock(r)}<hr class="hr">
       <div class="d-sec">Inspection Details</div>
       <div class="kv-grid">${kv('PO Number', esc(r.poNo))}${kv('Proposed Inspection Date', fDate(r.inspDate))}${kv('Inspection Location', esc(r.location), true)}${kv('Vendor Contact', esc(r.contact), true)}${r.remarks ? kv('Vendor Remarks', esc(r.remarks), true) : ''}</div>
